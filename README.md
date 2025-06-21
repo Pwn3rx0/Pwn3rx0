@@ -29,5 +29,4 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 
 ## Programming Languages
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Pwn3rx0&theme=dark&card_width=440cache_seconds=1800&langs_count=4&hide=shell,html,css,javascript))](https://github.com/Pwn3rx0/github-readme-stats)
-
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Pwn3rx0&theme=dark&card_width=440cache_seconds=1800&langs_count=4&hide=shell,html,css,javascript)](https://github.com/Pwn3rx0/github-readme-stats)
