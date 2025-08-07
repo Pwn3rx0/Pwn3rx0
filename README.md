@@ -14,7 +14,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 
 :house_with_garden: I’m from Egypt.
 
-:books: I'm currently learning all about IT and Security.
+:books: I'm currently learning all about Security and Red Teaming.
 
 
 # Social Networks
