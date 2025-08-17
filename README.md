@@ -25,9 +25,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 [![Medium Badge](https://img.shields.io/badge/Medium-000000?style=for-the-badge&link=https://pwnerx0.medium.com/)](https://pwnerx0.medium.com/)
 
 
-<p align="left">
-  <img src="https://tryhackme-badges.s3.amazonaws.com/andrewmamdouh122.png" alt="TryHackMe Badge" />
-</p>
+[![TryHackMe Badge](https://tryhackme-badges.s3.amazonaws.com/andrewmamdouh122.png)](https://tryhackme.com/p/andrewmamdouh122)
 
 
 
