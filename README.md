@@ -24,6 +24,8 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 [![Twitter Badge](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white&link=https://x.com/0Xandrew122)](https://x.com/0Xandrew122)
 [![Medium Badge](https://img.shields.io/badge/Medium-000000?style=for-the-badge&link=https://pwnerx0.medium.com/)](https://pwnerx0.medium.com/)
 
+<iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2453870" style='border:none;'></iframe>
+
 
 
 
