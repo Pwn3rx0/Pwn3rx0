@@ -1,13 +1,13 @@
 
 
-<div align="center">
+
 ### I'm Andrew Mamdouh
 
 Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Writer 
 <br>
 
 <img src="https://media.giphy.com/media/3oEjHWpiVIOGXT5l9m/giphy.gif" width="300">
-
+<div align="center">
 </br>
 
 <!--[![CyberSecurityUP GitHub stats](https://github-readme-stats.vercel.app/api?username=andrewmamdouh122&theme=dark&card_width=440)](https://github.com/andrewmamdouh122/github-readme-stats)-->
