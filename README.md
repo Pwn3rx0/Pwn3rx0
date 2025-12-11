@@ -15,7 +15,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 
 :books: I'm currently learning all about Security and Red Teaming.  ![visitors](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0&style=for-the-badge)
 
-
+[![Red Team - Blue Team](https://img.shields.io/badge/Red_Team-Blue_Team-AA0000?style=for-the-badge&logo=windowsdefender&logoColor=white)]()
 # Social Networks
 
 [![GitHub Badge](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/Pwn3rx0)](https://github.com/Pwn3rx0)
