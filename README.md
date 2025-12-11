@@ -40,7 +40,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 
 <br clear="both">
 
-<div align="left">
+<div align="center">
   <!-- Programming Languages -->
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="45" alt="C" title="C Programming" />
   <img width="10" />
@@ -48,6 +48,8 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img width="10" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" height="45" alt="Go" title="Go" />
   <img width="15" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" height="45" alt="Bash" title="Bash" />
+  <img width="10" />
   
   <!-- Penetration Testing Tools -->
 
@@ -63,16 +65,5 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img width="10" />
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Radare2.svg/960px-Radare2.svg.png?20151217225343" height="45" alt="Radare2" title="Radare2" onerror="this.src='https://cdn.simpleicons.org/gnubash/4EAA25'" />
   <img width="15" />
-  
-
-
-  
-  <!-- Operating Systems & Tools -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" height="45" alt="Linux" title="Linux" />
-  <img width="10" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" height="45" alt="Bash" title="Bash" />
-  <img width="10" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" height="45" alt="Debian" title="Debian" />
-  <img width="10" />
 
 </div>
