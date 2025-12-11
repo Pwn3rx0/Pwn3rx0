@@ -50,32 +50,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img width="10" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" height="45" alt="Go" title="Go" />
   <img width="15" />
-  
-  <!-- Penetration Testing Tools -->
-  <img src="https://cdn.simpleicons.org/kalilinux/557C94" height="45" alt="Kali Linux" title="Kali Linux - Penetration Testing" />
-  <img width="10" />
-  <img src="https://raw.githubusercontent.com/rapid7/metasploit-framework/master/docs/images/metasploit-logo.png" height="45" alt="Metasploit" title="Metasploit Framework" style="filter: brightness(0.9);" />
-  <img width="10" />
-  <img src="https://cdn.simpleicons.org/burpsuite/212121" height="45" alt="Burp Suite" title="Burp Suite - Web Security" />
-  <img width="10" />
-  <img src="https://nmap.org/images/nmap-logo-256x256.png" height="45" alt="Nmap" title="Nmap - Network Scanning" />
-  <img width="15" />
-  
-  <!-- Malware & Reverse Engineering -->
-  <img src="https://ghidra-sre.org/Ghidra-Framework-4.png" height="45" alt="Ghidra" title="Ghidra - NSA Reverse Engineering" />
-  <img width="10" />
-  <img src="https://cdn.simpleicons.org/virustotal/394EFF" height="45" alt="VirusTotal" title="Malware Analysis" />
-  <img width="10" />
-  <img src="https://rada.re/img/logo.png" height="45" alt="Radare2" title="Radare2 - Reverse Engineering" />
-  <img width="10" />
-  <img src="https://hex-rays.com/wp-content/uploads/2022/01/IDA_icon_64.png" height="45" alt="IDA Pro" title="IDA Pro - Disassembler" />
-  <img width="15" />
-  
-  <!-- Red Team & Offensive Security -->
-  <img src="https://cdn.simpleicons.org/hackthebox/9FEF00" height="45" alt="HackTheBox" title="HackTheBox - CTF Platform" />
-  <img width="10" />
-  <img src="https://cdn.simpleicons.org/microsoft/0078D4" height="45" alt="Windows Security" title="Windows Security & Evasion" />
-  <img width="15" />
+
   
   <!-- Operating Systems & Tools -->
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" height="45" alt="Linux" title="Linux" />
