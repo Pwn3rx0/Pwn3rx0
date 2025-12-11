@@ -1,3 +1,6 @@
+
+
+<div align="center">
 ### I'm Andrew Mamdouh
 
 Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Writer 
@@ -66,4 +69,5 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Radare2.svg/960px-Radare2.svg.png?20151217225343" height="45" alt="Radare2" title="Radare2" onerror="this.src='https://cdn.simpleicons.org/gnubash/4EAA25'" />
   <img width="15" />
 
+</div>
 </div>
