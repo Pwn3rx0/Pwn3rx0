@@ -74,6 +74,5 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img width="10" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" height="45" alt="Debian" title="Debian" />
   <img width="10" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" height="45" alt="Vim" title="Vim" />
-  <img width="10" />
+
 </div>
