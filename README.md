@@ -60,3 +60,5 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" height="45" alt="Vim" title="Vim Editor" />
   <img width="10" />
 </div>
+<img width="960" height="960" alt="image" src="https://github.com/user-attachments/assets/228430b5-93a5-48eb-ba66-bef9fc225928" />
+
