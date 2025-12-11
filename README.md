@@ -61,5 +61,4 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img width="10" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" height="45" alt="Vim" title="Vim Editor" />
   <img width="10" />
-  <img src="https://cdn.simpleicons.org/wireshark/1679A7" height="45" alt="Wireshark" title="Wireshark - Network Analysis" />
 </div>
