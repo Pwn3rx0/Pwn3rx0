@@ -54,27 +54,29 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <!-- Penetration Testing Tools -->
   <img src="https://cdn.simpleicons.org/kalilinux/557C94" height="45" alt="Kali Linux" title="Kali Linux - Penetration Testing" />
   <img width="10" />
-  <img src="https://img.shields.io/badge/Metasploit-258C8C?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MSAwLTgtMy41OS04LTggMC00LjQxIDMuNTktOCA4LTggNC40MSAwIDggMy41OSA4IDggMCA0LjQxLTMuNTkgOC04IDh6IiBmaWxsPSIjMjU4QzhDIi8+PC9zdmc+" title="Metasploit Framework" />
+  <img src="https://raw.githubusercontent.com/rapid7/metasploit-framework/master/docs/images/metasploit-logo.png" height="45" alt="Metasploit" title="Metasploit Framework" style="filter: brightness(0.9);" />
   <img width="10" />
   <img src="https://cdn.simpleicons.org/burpsuite/212121" height="45" alt="Burp Suite" title="Burp Suite - Web Security" />
   <img width="10" />
-  <img src="https://img.shields.io/badge/Nmap-000000?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MSAwLTgtMy41OS04LTggMC00LjQxIDMuNTktOCA4LTggNC40MSAwIDggMy41OSA4IDggMCA0LjQxLTMuNTkgOC04IDh6IiBmaWxsPSIjMDAwIi8+PC9zdmc+" title="Nmap - Network Scanning" />
+  <img src="https://nmap.org/images/nmap-logo-256x256.png" height="45" alt="Nmap" title="Nmap - Network Scanning" />
   <img width="15" />
   
   <!-- Malware & Reverse Engineering -->
-  <img src="https://img.shields.io/badge/Ghidra-000000?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MSAwLTgtMy41OS04LTggMC00LjQxIDMuNTktOCA4LTggNC40MSAwIDggMy41OSA4IDggMCA0LjQxLTMuNTkgOC04IDh6IiBmaWxsPSIjMDAwIi8+PC9zdmc+" title="Ghidra - NSA Reverse Engineering" />
+  <img src="https://ghidra-sre.org/Ghidra-Framework-4.png" height="45" alt="Ghidra" title="Ghidra - NSA Reverse Engineering" />
   <img width="10" />
   <img src="https://cdn.simpleicons.org/virustotal/394EFF" height="45" alt="VirusTotal" title="Malware Analysis" />
   <img width="10" />
-  <img src="https://img.shields.io/badge/Radare2-FFFFFF?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MSAwLTgtMy41OS04LTggMC00LjQxIDMuNTktOCA4LTggNC40MSAwIDggMy41OSA4IDggMCA0LjQxLTMuNTkgOC04IDh6IiBmaWxsPSIjRkZGIi8+PC9zdmc+&logoColor=000" style="background-color:#000; padding:5px; border-radius:5px;" title="Radare2 - Reverse Engineering" />
+  <img src="https://rada.re/img/logo.png" height="45" alt="Radare2" title="Radare2 - Reverse Engineering" />
+  <img width="10" />
+  <img src="https://hex-rays.com/wp-content/uploads/2022/01/IDA_icon_64.png" height="45" alt="IDA Pro" title="IDA Pro - Disassembler" />
   <img width="15" />
   
   <!-- Red Team & Offensive Security -->
   <img src="https://cdn.simpleicons.org/hackthebox/9FEF00" height="45" alt="HackTheBox" title="HackTheBox - CTF Platform" />
   <img width="10" />
-  <img src="https://img.shields.io/badge/Cobalt_Strike-004DBB?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MSAwLTgtMy41OS04LTggMC00LjQxIDMuNTktOCA4LTggNC40MSAwIDggMy41OSA4IDggMCA0LjQxLTMuNTkgOC04IDh6IiBmaWxsPSIjMDA0REJCIi8+PC9zdmc+" title="Cobalt Strike - Red Teaming" />
+  <img src="https://www.cobaltstrike.com/images/cobaltstrike-logo.png" height="45" alt="Cobalt Strike" title="Cobalt Strike - Red Teaming" />
   <img width="10" />
-  <img src="https://cdn.simpleicons.org/windows/0078D4" height="45" alt="Windows Security" title="Windows Security & Evasion" />
+  <img src="https://cdn.simpleicons.org/microsoft/0078D4" height="45" alt="Windows Security" title="Windows Security & Evasion" />
   <img width="15" />
   
   <!-- Operating Systems & Tools -->
