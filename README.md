@@ -40,7 +40,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 
 <br clear="both">
 
-<div align="left">
+<div align="center">
   <!-- Programming Languages -->
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="45" alt="C" title="C Programming" />
   <img width="10" />
