@@ -41,32 +41,51 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 ###
 
 <br clear="both">
+
+
 <div align="left">
   <!-- Programming Languages -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40" alt="c logo" />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="40" alt="python logo" />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" height="40" alt="go logo" />
-  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="45" alt="C" title="C Programming" />
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="45" alt="Python" title="Python" />
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" height="45" alt="Go" title="Go" />
+  <img width="15" />
   
-  <!-- Security Skills -->
-  <img src="https://cdn.simpleicons.org/kalilinux/000000" height="40" alt="Penetration Testing" title="Penetration Testing" />
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/hackthebox/9FEF00" height="40" alt="CTF Player" title="CTF Player" />
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/virustotal/000000" height="40" alt="Malware Analysis" title="Malware Analysis" />
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/bookstack/FF0000" height="40" alt="Learning Red Teaming" title="Learning Red Teaming" />
-  <img width="12" />
+  <!-- Penetration Testing Tools -->
+  <img src="https://cdn.simpleicons.org/kalilinux/557C94" height="45" alt="Kali Linux" title="Kali Linux - Penetration Testing" />
+  <img width="10" />
+  <img src="https://cdn.simpleicons.org/metasploit/258C8C" height="45" alt="Metasploit" title="Metasploit Framework" />
+  <img width="10" />
+  <img src="https://cdn.simpleicons.org/burpsuite/212121" height="45" alt="Burp Suite" title="Burp Suite - Web Security" />
+  <img width="15" />
+  
+  <!-- Malware & Reverse Engineering -->
+  <img src="https://cdn.simpleicons.org/radare/FFFFFF" height="45" alt="Radare2" title="Radare2 - Reverse Engineering" style="background-color:#000; padding:5px; border-radius:5px;" />
+  <img width="10" />
+  <img src="https://cdn.simpleicons.org/ida/FF6C37" height="45" alt="IDA Pro" title="IDA Pro - Disassembler" />
+  <img width="10" />
+  <img src="https://cdn.simpleicons.org/virustotal/394EFF" height="45" alt="VirusTotal" title="Malware Analysis" />
+  <img width="15" />
+  
+  <!-- Red Team & Offensive Security -->
+  <img src="https://cdn.simpleicons.org/hackthebox/9FEF00" height="45" alt="HackTheBox" title="HackTheBox - CTF Platform" />
+  <img width="10" />
+  <img src="https://cdn.simpleicons.org/cobaltstrike/004DBB" height="45" alt="Cobalt Strike" title="Cobalt Strike - Red Teaming" />
+  <img width="10" />
+  <img src="https://cdn.simpleicons.org/microsoftdefender/0078D4" height="45" alt="Windows Defender" title="Endpoint Security & Evasion" />
+  <img width="10" />
+  <img src="https://cdn.simpleicons.org/nmap/000000" height="45" alt="Nmap" title="Nmap - Network Scanning" style="background-color:#fff; padding:3px; border-radius:3px;" />
+  <img width="15" />
   
   <!-- Operating Systems & Tools -->
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" height="40" alt="linux logo" />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" height="40" alt="bash logo" />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" height="40" alt="debian logo" />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" height="40" alt="vim logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" height="45" alt="Linux" title="Linux" />
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" height="45" alt="Bash" title="Bash Scripting" />
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" height="45" alt="Debian" title="Debian" />
+  <img width="10" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" height="45" alt="Vim" title="Vim Editor" />
+  <img width="10" />
+  <img src="https://cdn.simpleicons.org/wireshark/1679A7" height="45" alt="Wireshark" title="Wireshark - Network Analysis" />
 </div>
-
