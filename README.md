@@ -7,7 +7,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 <br>
 
 <img src="https://media.giphy.com/media/3oEjHWpiVIOGXT5l9m/giphy.gif" width="300">
-<div align="center">
+
 </br>
 
 <!--[![CyberSecurityUP GitHub stats](https://github-readme-stats.vercel.app/api?username=andrewmamdouh122&theme=dark&card_width=440)](https://github.com/andrewmamdouh122/github-readme-stats)-->
@@ -21,7 +21,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 
 ![visitor](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0&left_color=black&right_color=black&left_text=HelloVisitors)
 
-
+<div align="center">
 
 
 [![Penetration Testing](https://img.shields.io/badge/Penetration_Testing-000000?style=for-the-badge&logo=kalilinux&logoColor=white)]() [![CTF Player](https://img.shields.io/badge/CTF_Player-000000?style=for-the-badge&logo=hackthebox&logoColor=white)]() [![Malware Analysis](https://img.shields.io/badge/Malware_Analysis-000000?style=for-the-badge&logo=virustotal&logoColor=white)]() 
