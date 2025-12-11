@@ -50,8 +50,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img width="15" />
   
   <!-- Penetration Testing Tools -->
-  <img src="https://cdn.simpleicons.org/kalilinux/557C94" height="45" alt="Kali Linux" title="Kali Linux" />
-  <img width="10" />
+
   <img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/metasploit-h33wivgvlvgtk3wmoejxq.png/metasploit-rkuireddk3p5vdgf5mil5.png?_a=DATAg1AAZAA0" height="45" alt="Metasploit" title="Metasploit Framework" onerror="this.src='https://cdn.simpleicons.org/rapid7/258C8C'" />
   <img width="10" />
   <img src="https://cdn.simpleicons.org/burpsuite/212121" height="45" alt="Burp Suite" title="Burp Suite" />
@@ -62,14 +61,9 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <!-- Malware & Reverse Engineering -->
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Ghidra_logo.svg/960px-Ghidra_logo.svg.png?20220727174502" height="45" alt="Ghidra" title="Ghidra" onerror="this.src='https://cdn.simpleicons.org/nationalsecurityagency/000000'" />
   <img width="10" />
-  <img src="https://cdn.simpleicons.org/virustotal/394EFF" height="45" alt="VirusTotal" title="VirusTotal" />
-  <img width="10" />
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Radare2.svg/960px-Radare2.svg.png?20151217225343" height="45" alt="Radare2" title="Radare2" onerror="this.src='https://cdn.simpleicons.org/gnubash/4EAA25'" />
   <img width="15" />
   
-  <!-- Red Team & Offensive Security -->
-  <img src="https://cdn.simpleicons.org/hackthebox/9FEF00" height="45" alt="HackTheBox" title="HackTheBox" />
-  <img width="10" />
 
 
   
@@ -82,5 +76,4 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img width="10" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" height="45" alt="Vim" title="Vim" />
   <img width="10" />
-  <img src="https://cdn.simpleicons.org/wireshark/1679A7" height="45" alt="Wireshark" title="Wireshark" />
 </div>
