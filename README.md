@@ -21,7 +21,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 
 
 
-[![Penetration Testing](https://img.shields.io/badge/Penetration_Testing-000000?style=for-the-badge&logo=kalilinux&logoColor=white)]() [![CTF Player](https://img.shields.io/badge/CTF_Player-000000?style=for-the-badge&logo=hackthebox&logoColor=white)]() [![Malware Analysis](https://img.shields.io/badge/Malware_Analysis-000000?style=for-the-badge&logo=virustotal&logoColor=white)]() [![Learning Red Teaming](https://img.shields.io/badge/Learning-Red_Teaming-FF0000?style=for-the-badge&logo=bookstack&logoColor=white)]()
+[![Penetration Testing](https://img.shields.io/badge/Penetration_Testing-000000?style=for-the-badge&logo=kalilinux&logoColor=white)]() [![CTF Player](https://img.shields.io/badge/CTF_Player-000000?style=for-the-badge&logo=hackthebox&logoColor=white)]() [![Malware Analysis](https://img.shields.io/badge/Malware_Analysis-000000?style=for-the-badge&logo=virustotal&logoColor=white)]() [![Learning Red Teaming](https://img.shields.io/badge/Learning-Red_Teaming-000000?style=for-the-badge&logo=bookstack&logoColor=white)]()
 
 # Social Networks
 
