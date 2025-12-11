@@ -39,4 +39,5 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg" height="40" alt="powershell logo"  />
 </div>
+
   ![visitors](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0)
