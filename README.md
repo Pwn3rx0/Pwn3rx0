@@ -13,7 +13,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 
 :house_with_garden: I’m from Egypt.
 
-:books: I'm currently learning all about Security and Red Teaming.
+:books: I'm currently learning all about Security and Red Teaming.  ![visitors](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0)
 
 
 # Social Networks
@@ -24,7 +24,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 [![Medium Badge](https://img.shields.io/badge/Medium-000000?style=for-the-badge&link=https://pwn3rx0.medium.com/)](https://pwn3rx0.medium.com/)
 
 
-[![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/andrewmamdouh122.png)](https://tryhackme.com/p/andrewmamdouh122)   ![visitors](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0)
+[![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/andrewmamdouh122.png)](https://tryhackme.com/p/andrewmamdouh122)  
 
 
 <h2 align="left">I code with</h2>
