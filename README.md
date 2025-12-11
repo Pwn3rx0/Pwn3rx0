@@ -70,8 +70,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <!-- Red Team & Offensive Security -->
   <img src="https://cdn.simpleicons.org/hackthebox/9FEF00" height="45" alt="HackTheBox" title="HackTheBox" />
   <img width="10" />
-  <img src="https://i.imgur.com/VQxw8Yd.png" height="45" alt="Cobalt Strike" title="Cobalt Strike" onerror="this.src='https://cdn.simpleicons.org/helpdesk/004DBB'" />
-  <img width="10" />
+
 
   
   <!-- Operating Systems & Tools -->
