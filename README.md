@@ -74,7 +74,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <!-- Red Team & Offensive Security -->
   <img src="https://cdn.simpleicons.org/hackthebox/9FEF00" height="45" alt="HackTheBox" title="HackTheBox - CTF Platform" />
   <img width="10" />
-  <img src="https://raw.githubusercontent.com/brett-fitz/pyMalleableProfileParser/main/cobalt-strike-logo.png" height="45" alt="Cobalt Strike" title="Cobalt Strike - Red Teaming" />
+  <img src="https://cpng.pikpng.com/pngl/s/446-4465819_cobalt-strike-logo-cobalt-strike-clipart.png" height="45" alt="Cobalt Strike" title="Cobalt Strike - Red Teaming" />
   <img width="10" />
   <img src="https://cdn.simpleicons.org/microsoft/0078D4" height="45" alt="Windows Security" title="Windows Security & Evasion" />
   <img width="15" />
