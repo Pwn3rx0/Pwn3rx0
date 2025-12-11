@@ -33,4 +33,4 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 
 ## Programming Languages
 
-![GitHub Card](https://githubcard.com/Pwn3rx0.svg)
+[![Top Langs](https://githubstats.xyz/api/top-langs/?username=Pwn3rx0)](https://githubstats.xyz/)
