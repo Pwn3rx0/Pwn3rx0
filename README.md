@@ -54,7 +54,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <!-- Security Skills -->
   <img src="https://cdn.simpleicons.org/kalilinux/000000" height="40" alt="Penetration Testing" title="Penetration Testing" />
   <img width="12" />
-  <img src="https://cdn.simpleicons.org/hackthebox/FF6A00" height="40" alt="CTF Player" title="CTF Player" />
+  <img src="https://cdn.simpleicons.org/hackthebox/000000" height="40" alt="CTF Player" title="CTF Player" />
   <img width="12" />
   <img src="https://cdn.simpleicons.org/virustotal/000000" height="40" alt="Malware Analysis" title="Malware Analysis" />
   <img width="12" />
