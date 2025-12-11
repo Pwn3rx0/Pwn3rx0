@@ -24,7 +24,8 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 [![Medium Badge](https://img.shields.io/badge/Medium-000000?style=for-the-badge&link=https://pwn3rx0.medium.com/)](https://pwn3rx0.medium.com/)
 
 
-[![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/andrewmamdouh122.png)](https://tryhackme.com/p/andrewmamdouh122)
+[![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/andrewmamdouh122.png)](https://tryhackme.com/p/andrewmamdouh122)   ![visitors](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0)
+
 
 <h2 align="left">I code with</h2>
 
@@ -49,4 +50,3 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 </div>
 
 
-  ![visitors](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0)
