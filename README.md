@@ -20,6 +20,8 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 [![Penetration Testing](https://img.shields.io/badge/Penetration_Testing-000000?style=for-the-badge&logo=kalilinux&logoColor=white)]()
 
 
+[![Malware Analysis](https://img.shields.io/badge/Malware_Analysis-000000?style=for-the-badge&logo=virustotal&logoColor=white)]()
+
 # Social Networks
 
 [![GitHub Badge](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/Pwn3rx0)](https://github.com/Pwn3rx0)
