@@ -16,7 +16,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 :books: I'm currently learning all about Security and Red Teaming. 
 
 
-![visitor](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0&left_color=black&right_color=white&left_text=HelloVisitors)
+![visitor](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0&left_color=black&right_color=black&left_text=HelloVisitors)
 
 
 
