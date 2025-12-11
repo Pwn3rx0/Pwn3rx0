@@ -72,8 +72,7 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
   <img width="10" />
   <img src="https://i.imgur.com/VQxw8Yd.png" height="45" alt="Cobalt Strike" title="Cobalt Strike" onerror="this.src='https://cdn.simpleicons.org/helpdesk/004DBB'" />
   <img width="10" />
-  <img src="https://cdn.simpleicons.org/windowsdefender/0078D4" height="45" alt="Windows Defender" title="Windows Defender" />
-  <img width="15" />
+
   
   <!-- Operating Systems & Tools -->
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" height="45" alt="Linux" title="Linux" />
