@@ -1,7 +1,3 @@
-  ![visitors](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0)
-
-
-
 ### I'm Andrew Mamdouh
 
 Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Writer 
@@ -31,9 +27,4 @@ Penetration Tester | Malware Analysis | Malware Dev | CTF Player | Article Write
 [![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/andrewmamdouh122.png)](https://tryhackme.com/p/andrewmamdouh122)
 
 
-
-
-
-## Programming Languages
-
-![GitHub Card](https://githubcard.com/Pwn3rx0.svg?d=NWWo42ud)
+  ![visitors](https://visitor-badge.laobi.icu/badge?page_id=Pwn3rx0)
