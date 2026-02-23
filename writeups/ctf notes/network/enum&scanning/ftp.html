@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ftp - pwn3rx0</title>
+  <meta name="description" content="bash ftp $target  or bash nc $target 21   If anonymous login is allowed: bash Name: anonymous Password: anonymous   Recursive listing (sometimes hidde...">
+  <meta name="keywords" content="cybersecurity, security, writeups, ctf, pentest, hacking, andrew mamdouh, pwn3rx0, andrew_mamdouh, ctf notes, network, enum&scanning">
+  <meta name="author" content="Andrew Mamdouh (pwn3rx0)">
+  <meta property="og:title" content="ftp">
+  <meta property="og:description" content="bash ftp $target  or bash nc $target 21   If anonymous login is allowed: bash Name: anonymous Password: anonymous   Recursive listing (sometimes hidde...">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="/assets/images/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="/writeups/ctf notes/network/enum&scanning/ftp.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ftp">
+  <meta name="twitter:description" content="bash ftp $target  or bash nc $target 21   If anonymous login is allowed: bash Name: anonymous Password: anonymous   Recursive listing (sometimes hidde...">
+  <meta name="twitter:image" content="/assets/images/og-home.png">
+  <meta name="site-base" content="/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="profile-card">
+        <div class="avatar">
+          <img src="/assets/images/profile.jpg" alt="Andrew Mamdouh">
+        </div>
+        <div class="profile-name">Andrew Mamdouh</div>
+        <div class="profile-nick" style="color:#8a8f98;">(pwn3rx0)</div>
+        <nav class="social-tabs">
+          <a class="chip" href="https://github.com/pwn3rx0">GitHub</a>
+          <a class="chip" href="https://www.linkedin.com/in/andrew-mamdouh122/">LinkedIn</a>
+          <a class="chip" href="https://x.com/pwn3rx0">X</a>
+        </nav>
+      </div>
+      <nav class="category-tree"></nav>
+    </aside>
+    <main class="main-content">
+      <nav class="breadcrumbs">
+      
+      <a href="/">Home</a>
+    
+      <span class="separator">/</span>
+      <a href="/category/ctf notes.html">Ctf Notes</a>
+    
+      <span class="separator">/</span>
+      <a href="/category/ctf notes/network.html">Network</a>
+    
+      <span class="separator">/</span>
+      <a href="/category/ctf notes/network/enum&scanning.html">Enum&Scanning</a>
+    
+      <span class="separator">/</span>
+      <span class="current">ftp</span>
+    </nav>
+      <article class="writeup">
+        <header>
+          <h1>ftp</h1>
+          <div class="writeup-meta">
+            <div class="writeup-date">date: <time datetime="February 23, 2026">February 23, 2026</time></div>
+            <div class="tags-row">
+              <div class="tags-label">tags:</div>
+              <div class="tags"></div>
+            </div>
+            
+          </div>
+        </header>
+        <div class="writeup-content"><pre><code class="language-bash">ftp $target
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">nc $target 21
+</code></pre>
+<h4>If anonymous login is allowed:</h4>
+<pre><code class="language-bash">Name: anonymous
+Password: anonymous
+</code></pre>
+<h4>Recursive listing (sometimes hidden files appear):</h4>
+<pre><code class="language-bash">ls -R
+</code></pre>
+<h4>Download binary files safely:</h4>
+<pre><code>binary
+get file.bin
+</code></pre>
+<h4>download all files:</h4>
+<pre><code>get filename
+mget *             all files
+</code></pre>
+<h4>Upload Files:</h4>
+<pre><code>put filname
+mput *
+</code></pre>
+<h4>Useful FTP Client Settings</h4>
+<pre><code class="language-bash">binary     # switch to binary mode (important for executables/images)
+ascii      # switch to ASCII mode (for text files)
+</code></pre>
+</div>
+        <nav class="post-navigation">
+          
+      <a href="/writeups/ctf notes/network/enum&scanning/SMTP.html" class="nav-link prev-post">
+        <span class="nav-direction">← Previous</span>
+        <span class="nav-title">SMTP</span>
+      </a>
+    
+          
+      <a href="/writeups/ctf notes/network/enum&scanning/nmap.html" class="nav-link next-post">
+        <span class="nav-direction">Next →</span>
+        <span class="nav-title">nmap</span>
+      </a>
+    
+        </nav>
+        
+      </article>
+    </main>
+  </div>
+  <button class="mobile-menu-toggle">☰</button>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/navigation.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/c.min.js" defer></script>
+  <script>
+    (function() {
+      function enhanceCodeBlocks(scope) {
+        const container = scope || document.querySelector('.writeup-content') || document;
+        const blocks = Array.from(container.querySelectorAll('pre > code')).filter(c => !c.closest('.code-block'));
+        blocks.forEach(code => {
+          const pre = code.parentElement;
+          if (!pre || pre.dataset.enhanced === 'true') return;
+          pre.dataset.enhanced = 'true';
+          let langClass = Array.from(code.classList || []).find(c => c.startsWith('language-'));
+          if (!langClass) {
+            const t = code.textContent || '';
+            if (/#include\s+<[^>]+>/.test(t) || /\bint\s+main\s*\(/.test(t) || /#include\s+<Windows\.h>/i.test(t)) {
+              code.classList.add('language-c');
+              langClass = 'language-c';
+            }
+          }
+          const lang = (langClass ? langClass.replace('language-', '') : 'text').toUpperCase();
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          const header = document.createElement('div');
+          header.className = 'code-header';
+          const langEl = document.createElement('span');
+          langEl.className = 'code-lang';
+          langEl.textContent = lang;
+          const btn = document.createElement('button');
+          btn.className = 'code-copy';
+          btn.type = 'button';
+          btn.textContent = 'Copy';
+          btn.addEventListener('click', async () => {
+            const text = code.innerText;
+            const fallbackCopy = () => {
+              const ta = document.createElement('textarea');
+              ta.value = text;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              ta.style.left = '-9999px';
+              document.body.appendChild(ta);
+              ta.focus();
+              ta.select();
+              try {
+                document.execCommand('copy');
+                btn.textContent = 'Copied';
+              } catch (_) {
+                btn.textContent = 'Failed';
+              } finally {
+                document.body.removeChild(ta);
+                setTimeout(() => (btn.textContent = 'Copy'), 1200);
+              }
+            };
+            try {
+              if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                btn.textContent = 'Copied';
+                setTimeout(() => (btn.textContent = 'Copy'), 1200);
+              } else {
+                fallbackCopy();
+              }
+            } catch (_) {
+              fallbackCopy();
+            }
+          });
+          header.appendChild(langEl);
+          header.appendChild(btn);
+          const holder = document.createElement('div');
+          holder.className = 'code-content';
+          pre.replaceWith(wrapper);
+          holder.appendChild(pre);
+          wrapper.appendChild(header);
+          wrapper.appendChild(holder);
+          if (window.hljs && typeof window.hljs.highlightElement === 'function') {
+            window.hljs.highlightElement(code);
+          } else if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+            window.hljs.highlightAll();
+          }
+        });
+      }
+      function indentAfterHeadings(scope) {
+        const container = scope || document.querySelector('.writeup-content');
+        if (!container) return;
+        const headings = container.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        headings.forEach(h => {
+          const level = parseInt(h.tagName.substring(1), 10);
+          let el = h.nextElementSibling;
+          while (el) {
+            if (/^H[1-6]$/.test(el.tagName)) {
+              const nextLevel = parseInt(el.tagName.substring(1), 10);
+              if (nextLevel <= level) break;
+            }
+            if (el.tagName === 'P') {
+              el.classList.add('indent-p');
+            }
+            el = el.nextElementSibling;
+          }
+        });
+      }
+      function initEnhancements() {
+        if (window.mermaid) {
+          mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        }
+        enhanceCodeBlocks();
+        indentAfterHeadings();
+        if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+          window.hljs.highlightAll();
+        }
+        const target = document.querySelector('.writeup-content');
+        if (target && window.MutationObserver) {
+          const mo = new MutationObserver(() => {
+            enhanceCodeBlocks(target);
+            indentAfterHeadings(target);
+            if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+              window.hljs.highlightAll();
+            }
+          });
+          mo.observe(target, { childList: true, subtree: true });
+        }
+      }
+      window.addEventListener('load', initEnhancements);
+    })();
+  </script>
+</body>
+</html>

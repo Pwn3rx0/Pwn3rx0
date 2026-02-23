@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hash - pwn3rx0</title>
+  <meta name="description" content="Hashes  Hash  Length (       Example MD5      32 chars  5d41402abc4b2a76b9719d911017c592 SHA1  40 chars  2aae6c35c94fcfb415dbe95f408b9ce91ee846ed SHA2...">
+  <meta name="keywords" content="cybersecurity, security, writeups, ctf, pentest, hacking, andrew mamdouh, pwn3rx0, andrew_mamdouh, ctf notes, crypto">
+  <meta name="author" content="Andrew Mamdouh (pwn3rx0)">
+  <meta property="og:title" content="hash">
+  <meta property="og:description" content="Hashes  Hash  Length (       Example MD5      32 chars  5d41402abc4b2a76b9719d911017c592 SHA1  40 chars  2aae6c35c94fcfb415dbe95f408b9ce91ee846ed SHA2...">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="/assets/images/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="/writeups/ctf notes/crypto/hash.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="hash">
+  <meta name="twitter:description" content="Hashes  Hash  Length (       Example MD5      32 chars  5d41402abc4b2a76b9719d911017c592 SHA1  40 chars  2aae6c35c94fcfb415dbe95f408b9ce91ee846ed SHA2...">
+  <meta name="twitter:image" content="/assets/images/og-home.png">
+  <meta name="site-base" content="/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="profile-card">
+        <div class="avatar">
+          <img src="/assets/images/profile.jpg" alt="Andrew Mamdouh">
+        </div>
+        <div class="profile-name">Andrew Mamdouh</div>
+        <div class="profile-nick" style="color:#8a8f98;">(pwn3rx0)</div>
+        <nav class="social-tabs">
+          <a class="chip" href="https://github.com/pwn3rx0">GitHub</a>
+          <a class="chip" href="https://www.linkedin.com/in/andrew-mamdouh122/">LinkedIn</a>
+          <a class="chip" href="https://x.com/pwn3rx0">X</a>
+        </nav>
+      </div>
+      <nav class="category-tree"></nav>
+    </aside>
+    <main class="main-content">
+      <nav class="breadcrumbs">
+      
+      <a href="/">Home</a>
+    
+      <span class="separator">/</span>
+      <a href="/category/ctf notes.html">Ctf Notes</a>
+    
+      <span class="separator">/</span>
+      <a href="/category/ctf notes/crypto.html">Crypto</a>
+    
+      <span class="separator">/</span>
+      <span class="current">hash</span>
+    </nav>
+      <article class="writeup">
+        <header>
+          <h1>hash</h1>
+          <div class="writeup-meta">
+            <div class="writeup-date">date: <time datetime="February 23, 2026">February 23, 2026</time></div>
+            <div class="tags-row">
+              <div class="tags-label">tags:</div>
+              <div class="tags"></div>
+            </div>
+            
+          </div>
+        </header>
+        <div class="writeup-content"><h4>Hashes</h4>
+<pre><code>Hash  Length (       Example
+MD5      32 chars  5d41402abc4b2a76b9719d911017c592
+SHA1  40 chars  2aae6c35c94fcfb415dbe95f408b9ce91ee846ed
+SHA256  64 chars  9d5ed678fe57bcca610140957afab571...
+SHA512  128 chars  1f40fc92da241694750979ee6cf582f2...
+</code></pre>
+<h4>How to Detect</h4>
+<pre><code class="language-bash">hashid &lt;hash&gt;
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">hash-identifier
+</code></pre>
+<h4>brute force</h4>
+<pre><code class="language-bash">john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+</code></pre>
+<p>if the hash type not found</p>
+<pre><code class="language-bash">john --wordlist=/usr/share/wordlists/rockyou.txt --format=NTLM hash.txt
+</code></pre>
+<p>output</p>
+<pre><code class="language-bash">john --show hash.txt
+</code></pre>
+<h4>Mask Attack</h4>
+<pre><code class="language-bash">john --mask=?l?l?l?l?d hash.txt
+</code></pre>
+<pre><code>?l = lowercase
+?u = uppercase
+?d = digit
+</code></pre>
+<h4>Cracking Hashes with Hashcat (Optional, faster)</h4>
+<h5>MD5 example:</h5>
+<pre><code class="language-bash">hashcat -m 0 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
+</code></pre>
+<h6>NTLM example:</h6>
+<pre><code>hashcat -m 1000 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
+</code></pre>
+<h5>SSH private key (ssh2john output):</h5>
+<pre><code>hashcat -m 18200 -a 0 id_rsa.hash /usr/share/wordlists/rockyou.txt
+</code></pre>
+<h4>websites</h4>
+<p><a href="https://crackstation.net/">https://crackstation.net/</a>
+<a href="https://hashes.com/en/decrypt/hash">https://hashes.com/en/decrypt/hash</a></p>
+</div>
+        <nav class="post-navigation">
+          
+      <a href="/writeups/ctf notes/crypto/encode.html" class="nav-link prev-post">
+        <span class="nav-direction">← Previous</span>
+        <span class="nav-title">encode</span>
+      </a>
+    
+          <span class="nav-link disabled"><span class="nav-direction">Next →</span><span class="nav-title">No newer post</span></span>
+        </nav>
+        
+      </article>
+    </main>
+  </div>
+  <button class="mobile-menu-toggle">☰</button>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/navigation.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/c.min.js" defer></script>
+  <script>
+    (function() {
+      function enhanceCodeBlocks(scope) {
+        const container = scope || document.querySelector('.writeup-content') || document;
+        const blocks = Array.from(container.querySelectorAll('pre > code')).filter(c => !c.closest('.code-block'));
+        blocks.forEach(code => {
+          const pre = code.parentElement;
+          if (!pre || pre.dataset.enhanced === 'true') return;
+          pre.dataset.enhanced = 'true';
+          let langClass = Array.from(code.classList || []).find(c => c.startsWith('language-'));
+          if (!langClass) {
+            const t = code.textContent || '';
+            if (/#include\s+<[^>]+>/.test(t) || /\bint\s+main\s*\(/.test(t) || /#include\s+<Windows\.h>/i.test(t)) {
+              code.classList.add('language-c');
+              langClass = 'language-c';
+            }
+          }
+          const lang = (langClass ? langClass.replace('language-', '') : 'text').toUpperCase();
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          const header = document.createElement('div');
+          header.className = 'code-header';
+          const langEl = document.createElement('span');
+          langEl.className = 'code-lang';
+          langEl.textContent = lang;
+          const btn = document.createElement('button');
+          btn.className = 'code-copy';
+          btn.type = 'button';
+          btn.textContent = 'Copy';
+          btn.addEventListener('click', async () => {
+            const text = code.innerText;
+            const fallbackCopy = () => {
+              const ta = document.createElement('textarea');
+              ta.value = text;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              ta.style.left = '-9999px';
+              document.body.appendChild(ta);
+              ta.focus();
+              ta.select();
+              try {
+                document.execCommand('copy');
+                btn.textContent = 'Copied';
+              } catch (_) {
+                btn.textContent = 'Failed';
+              } finally {
+                document.body.removeChild(ta);
+                setTimeout(() => (btn.textContent = 'Copy'), 1200);
+              }
+            };
+            try {
+              if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                btn.textContent = 'Copied';
+                setTimeout(() => (btn.textContent = 'Copy'), 1200);
+              } else {
+                fallbackCopy();
+              }
+            } catch (_) {
+              fallbackCopy();
+            }
+          });
+          header.appendChild(langEl);
+          header.appendChild(btn);
+          const holder = document.createElement('div');
+          holder.className = 'code-content';
+          pre.replaceWith(wrapper);
+          holder.appendChild(pre);
+          wrapper.appendChild(header);
+          wrapper.appendChild(holder);
+          if (window.hljs && typeof window.hljs.highlightElement === 'function') {
+            window.hljs.highlightElement(code);
+          } else if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+            window.hljs.highlightAll();
+          }
+        });
+      }
+      function indentAfterHeadings(scope) {
+        const container = scope || document.querySelector('.writeup-content');
+        if (!container) return;
+        const headings = container.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        headings.forEach(h => {
+          const level = parseInt(h.tagName.substring(1), 10);
+          let el = h.nextElementSibling;
+          while (el) {
+            if (/^H[1-6]$/.test(el.tagName)) {
+              const nextLevel = parseInt(el.tagName.substring(1), 10);
+              if (nextLevel <= level) break;
+            }
+            if (el.tagName === 'P') {
+              el.classList.add('indent-p');
+            }
+            el = el.nextElementSibling;
+          }
+        });
+      }
+      function initEnhancements() {
+        if (window.mermaid) {
+          mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        }
+        enhanceCodeBlocks();
+        indentAfterHeadings();
+        if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+          window.hljs.highlightAll();
+        }
+        const target = document.querySelector('.writeup-content');
+        if (target && window.MutationObserver) {
+          const mo = new MutationObserver(() => {
+            enhanceCodeBlocks(target);
+            indentAfterHeadings(target);
+            if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+              window.hljs.highlightAll();
+            }
+          });
+          mo.observe(target, { childList: true, subtree: true });
+        }
+      }
+      window.addEventListener('load', initEnhancements);
+    })();
+  </script>
+</body>
+</html>

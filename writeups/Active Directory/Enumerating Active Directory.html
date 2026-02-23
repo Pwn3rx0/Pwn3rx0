@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enumerating Active Directory - pwn3rx0</title>
+  <meta name="description" content=">Title: Notes for Enumerating Active Directory >Author: Andrew Mamdouh  ">
+  <meta name="keywords" content="cybersecurity, security, writeups, ctf, pentest, hacking, andrew mamdouh, pwn3rx0, andrew_mamdouh, active directory">
+  <meta name="author" content="Andrew Mamdouh (pwn3rx0)">
+  <meta property="og:title" content="Enumerating Active Directory">
+  <meta property="og:description" content=">Title: Notes for Enumerating Active Directory >Author: Andrew Mamdouh  ">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="/assets/images/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="/writeups/Active Directory/Enumerating Active Directory.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Enumerating Active Directory">
+  <meta name="twitter:description" content=">Title: Notes for Enumerating Active Directory >Author: Andrew Mamdouh  ">
+  <meta name="twitter:image" content="/assets/images/og-home.png">
+  <meta name="site-base" content="/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="profile-card">
+        <div class="avatar">
+          <img src="/assets/images/profile.jpg" alt="Andrew Mamdouh">
+        </div>
+        <div class="profile-name">Andrew Mamdouh</div>
+        <div class="profile-nick" style="color:#8a8f98;">(pwn3rx0)</div>
+        <nav class="social-tabs">
+          <a class="chip" href="https://github.com/pwn3rx0">GitHub</a>
+          <a class="chip" href="https://www.linkedin.com/in/andrew-mamdouh122/">LinkedIn</a>
+          <a class="chip" href="https://x.com/pwn3rx0">X</a>
+        </nav>
+      </div>
+      <nav class="category-tree"></nav>
+    </aside>
+    <main class="main-content">
+      <nav class="breadcrumbs">
+      
+      <a href="/">Home</a>
+    
+      <span class="separator">/</span>
+      <a href="/category/Active Directory.html">Active Directory</a>
+    
+      <span class="separator">/</span>
+      <span class="current">Enumerating Active Directory</span>
+    </nav>
+      <article class="writeup">
+        <header>
+          <h1>Enumerating Active Directory</h1>
+          <div class="writeup-meta">
+            <div class="writeup-date">date: <time datetime="February 23, 2026">February 23, 2026</time></div>
+            <div class="tags-row">
+              <div class="tags-label">tags:</div>
+              <div class="tags"></div>
+            </div>
+            
+          </div>
+        </header>
+        <div class="writeup-content"><blockquote>
+<p>Title: Notes for Enumerating Active Directory
+Author: Andrew Mamdouh</p>
+</blockquote>
+<p><img src="/writeups/writeups-images/563124%201.jpg" alt="563124 1.jpg"></p>
+<h2>Credential Injection</h2>
+<h3>Windows vs. Linux Context</h3>
+<div class="callout callout-info"><div class="callout-title">Context</div>
+
+<p>While enumeration can be performed from Linux (e.g., Kali), using a Windows machine enables deeper enumeration and exploitation by leveraging native Windows tools and mimicking a realistic adversary.</p>
+</div>
+
+<h3>Runas for Credential Injection</h3>
+<p><code>runas.exe</code> is a native Windows binary used to execute programs under a different user&#39;s context. It is particularly useful for injecting discovered Active Directory credentials into memory when you are <strong>not domain-joined</strong>.</p>
+<pre><code class="language-powershell"># Syntax for injecting credentials for network authentication only
+runas.exe /netonly /user:&lt;DOMAIN&gt;\&lt;USERNAME&gt; cmd.exe
+</code></pre>
+<ul>
+<li><em>Key Flags:</em>*</li>
+</ul>
+<ul>
+<li><code>/netonly</code> – Credentials are used <strong>only for network authentication</strong>. Local commands execute under your current user context. This works even if the domain controller cannot verify the credentials at the moment of injection.</li>
+<li><code>/user</code> – Specifies the domain and username. Using the <strong>FQDN</strong> (e.g., <code>za.tryhackme.com\user</code>) is recommended over the NetBIOS name for reliable resolution.</li>
+<li>The final argument (<code>cmd.exe</code>) is the program to launch with the injected credentials.</li>
+</ul>
+<div class="callout callout-tip"><div class="callout-title">Local Admin Context</div>
+
+<p>Start your initial Command Prompt <strong>as Administrator</strong> before running <code>runas</code>. This injects a local Administrator token, allowing any locally executed tools from the spawned <code>runas</code> CMD to run with elevated privileges (does not grant network admin rights).</p>
+</div>
+
+<h3>Verifying Injected Credentials</h3>
+<p>After injection, verify the credentials work by listing the <code>SYSVOL</code> directory—a share on all domain controllers readable by any authenticated AD account. It contains Group Policy Objects (GPOs) and scripts.</p>
+<pre><code class="language-powershell">
+# Force a network listing of SYSVOL to test credentials
+dir \\&lt;DC_FQDN&gt;\SYSVOL\
+</code></pre>
+<ul>
+<li><em>Example Output:</em>*</li>
+</ul>
+<pre><code class="language-text">
+Volume in drive \\za.tryhackme.com\SYSVOL is Windows
+Directory of \\za.tryhackme.com\SYSVOL
+02/24/2022  09:57 PM    &lt;DIR&gt;          .
+02/24/2022  09:57 PM    &lt;DIR&gt;          ..
+02/24/2022  09:57 PM    &lt;JUNCTION&gt;     za.tryhackme.com [C:\Windows\SYSVOL\domain]
+</code></pre>
+<h3>DNS Configuration (If Required)</h3>
+<p>If internal DNS is not auto-configured (e.g., via DHCP/VPN), manually set the DNS server to a domain controller&#39;s IP.</p>
+<pre><code class="language-powershell"># Set DNS server to Domain Controller IP (Run in PowerShell)
+$dnsip = &quot;&lt;DC_IP&gt;&quot;
+$index = Get-NetAdapter -Name &#39;Ethernet&#39; | Select-Object -ExpandProperty &#39;ifIndex&#39;
+Set-DnsClientServerAddress -InterfaceIndex $index -ServerAddresses $dnsip
+
+# Verify DNS resolution
+nslookup za.tryhackme.com
+</code></pre>
+<h3>Authentication Protocol Nuance</h3>
+<div class="callout callout-warning"><div class="callout-title">IP vs. Hostname</div>
+
+<p>The method used to access the share influences the authentication protocol:</p>
+<ul>
+<li><p><code>dir \\za.tryhackme.com\SYSVOL</code> → Forces <strong>Kerberos</strong> authentication (uses hostname in tickets).</p>
+</li>
+<li><p><code>dir \\&lt;DC_IP&gt;\SYSVOL</code> → Forces <strong>NTLM</strong> authentication.</p>
+</li>
+</ul>
+<p>This distinction can be important for stealth, as some defensive tools monitor specifically for Pass-The-Hash attacks (which use NTLM). Forcing NTLM may bypass certain Kerberos-specific detections.</p>
+</div>
+
+<h3>Using Injected Credentials</h3>
+<p>With <code>/netonly</code>, <strong>all network communication</strong> from applications launched from that command prompt will use the injected AD credentials. This enables authentication to:</p>
+<ul>
+<li>Network shares (like <code>SYSVOL</code>)</li>
+<li>MS SQL databases using Windows Authentication</li>
+<li>Web applications using NTLM authentication</li>
+</ul>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020260203182300.png" alt="Pasted image 20260203182300.png"></p>
+<hr>
+<h2>Microsoft Management Console</h2>
+<h3>Prerequisites &amp; Setup</h3>
+<div class="callout callout-info"><div class="callout-title">Assumption</div>
+
+<p>This task assumes prior knowledge of core AD objects (Users, Computers, OUs, etc.) from the &quot;Active Directory Basics&quot; room.</p>
+</div>
+
+<ul>
+<li>Connect to the provided jump host (<code>THMJMP1</code>) via RDP using your credentials.</li>
+<li>The <strong>Remote Server Administration Tools (RSAT) AD Snap-Ins</strong> are pre-installed on <code>THMJMP1</code>.</li>
+</ul>
+<div class="callout callout-tip"><div class="callout-title">Manual RSAT Installation</div>
+
+<p>If using your own Windows machine, install the required tools:</p>
+<ol>
+<li>Go to <strong>Settings &gt; Apps &gt; Optional features &gt; Add a feature</strong>.</li>
+<li>Search for and install <strong>&quot;RSAT: Active Directory Domain Services and Lightweight Directory Tools&quot;</strong>.</div></li>
+</ol>
+<h3>Launching MMC with Injected Credentials</h3>
+<p>MMC must be run from a command prompt where AD credentials have been injected via <code>runas /netonly</code> to authenticate to the domain.</p>
+<pre><code class="language-powershell"># Run this in your runas-spawned command prompt
+MMC
+</code></pre>
+<h3>Configuring the AD Snap-Ins</h3>
+<p>After launching MMC:</p>
+<ol>
+<li>Click <strong>File &gt; Add/Remove Snap-in</strong>.</li>
+<li>Add all three <strong>Active Directory Snap-ins</strong>:<ul>
+<li>Active Directory Users and Computers</li>
+<li>Active Directory Domains and Trusts</li>
+<li>Active Directory Sites and Services</li>
+</ul>
+</li>
+<li>Configure each snap-in to point to the target domain:<ul>
+<li><strong>For Active Directory Domains and Trusts</strong>: Right-click -&gt; <strong>Change Forest</strong> -&gt; Root domain: <code>za.tryhackme.com</code></li>
+<li><strong>For Active Directory Sites and Services</strong>: Right-click -&gt; <strong>Change Forest</strong> -&gt; Root domain: <code>za.tryhackme.com</code></li>
+<li><strong>For Active Directory Users and Computers</strong>: Right-click -&gt; <strong>Change Domain</strong> -&gt; Domain: <code>za.tryhackme.com</code></li>
+</ul>
+</li>
+<li>Enable <strong>Advanced Features</strong>: Right-click <strong>Active Directory Users and Computers</strong> -&gt; <strong>View -&gt; Advanced Features</strong>.</li>
+</ol>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020260203182357.png" alt="Pasted image 20260203182357.png"></p>
+<h3>Enumerating Structure and Objects</h3>
+<p>Navigate within <strong>Active Directory Users and Computers</strong> -&gt; <code>za.tryhackme.com</code>.</p>
+<h4>Organisational Units (OUs) and Users</h4>
+<ul>
+<li>Expand the domain to view the <strong>OU structure</strong> (e.g., <code>People</code>, <code>Servers</code>, <code>Workstations</code>).</li>
+<li>The <code>People</code> OU typically contains department-specific sub-OUs (e.g., IT, Sales, Admin).</li>
+<li>Clicking on a user object allows inspection of all <strong>attributes</strong>, <strong>group memberships</strong>, and other properties.</li>
+</ul>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020260203182419.png" alt="Pasted image 20260203182419.png"></p>
+<h4>Computers</h4>
+<ul>
+<li>The <code>Servers</code> and <code>Workstations</code> OUs contain domain-joined machine accounts.</li>
+<li>These can be enumerated to identify potential targets.</li>
+</ul>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020260203182436.png" alt="Pasted image 20260203182436.png"></p>
+<h4>Direct Modification</h4>
+<div class="callout callout-warning"><div class="callout-title">Privileges Required</div>
+
+<p>If your account has sufficient permissions, MMC can be used to <strong>directly modify AD objects</strong> (e.g., reset passwords, add users to groups).</p>
+</div>
+
+<h3>Assessment of MMC Enumeration</h3>
+<table>
+<thead>
+<tr>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Provides a <strong>holistic, visual overview</strong> of the AD environment.</td>
+<td>Requires <strong>RDP access</strong> to a machine where MMC/RSAT is installed.</td>
+</tr>
+<tr>
+<td>Allows <strong>rapid searching</strong> for specific objects.</td>
+<td><strong>Bulk extraction</strong> of properties or attributes across all objects is inefficient or impossible.</td>
+</tr>
+<tr>
+<td>Enables <strong>direct viewing</strong> of all object attributes and properties.</td>
+<td></td>
+</tr>
+<tr>
+<td>With privileges, allows <strong>direct modification</strong> of AD objects.</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Command Prompt</h2>
+<div class="callout callout-warning"><div class="callout-title">Environment Constraint</div>
+
+<p><strong><code>net</code> commands for AD enumeration must be run from a domain-joined machine.</strong> For this task, you must use the provided <code>THMJMP1</code> host, as they will not work from a non-domain-joined system (it will default to <code>WORKGROUP</code>).</p>
+</div>
+
+<p>The built-in <code>net</code> command is a lightweight tool for quick AD enumeration, useful in situations where PowerShell may be monitored, or when operating through a constrained interface like a RAT (Remote Access Trojan).</p>
+<h3>Enumerating Users</h3>
+<p>List all domain user accounts:</p>
+<pre><code class="language-cmd">net user /domain
+</code></pre>
+<p>Retrieve detailed information about a specific user:</p>
+<pre><code class="language-cmd">net user &lt;Username&gt; /domain
+</code></pre>
+<div class="callout callout-info"><div class="callout-title">Group Membership Limitation</div>
+
+<p>The <code>net user</code> command <strong>may fail to list all group memberships if the user belongs to more than 10 groups.</strong></p>
+</div>
+
+<h3>Enumerating Groups</h3>
+<p>List all domain groups:</p>
+<pre><code class="language-cmd">net group /domain
+</code></pre>
+<p>List members of a specific group:</p>
+<pre><code class="language-cmd">net group &quot;&lt;Group Name&gt;&quot; /domain
+</code></pre>
+<h3>Enumerating Password Policy</h3>
+<p>Retrieve the domain password policy:</p>
+<pre><code class="language-cmd">net accounts /domain
+</code></pre>
+<ul>
+<li><em>Key Information Provided:</em>*</li>
+</ul>
+<ul>
+<li><strong>Password History Length:</strong> Number of unique passwords required before reuse.</li>
+<li><strong>Lockout Threshold:</strong> Number of failed attempts before lockout.</li>
+<li><strong>Lockout Duration:</strong> How long an account remains locked (in minutes).</li>
+<li><strong>Minimum Password Length</strong></li>
+<li><strong>Maximum Password Age:</strong> How often passwords must be changed.</li>
+</ul>
+<div class="callout callout-tip"><div class="callout-title">Operational Security</div>
+
+<p>This information is critical for staging <strong>password spraying attacks</strong>. It helps determine safe password guesses and avoid account lockouts.</p>
+</div>
+
+<h3>Assessment of CMD Enumeration</h3>
+<table>
+<thead>
+<tr>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>No additional tools required</strong>; uses native Windows binaries.</td>
+<td><strong>Must be executed from a domain-joined machine.</strong></td>
+</tr>
+<tr>
+<td>Often <strong>not heavily monitored</strong> by Blue teams compared to PowerShell.</td>
+<td>Output can be <strong>incomplete</strong> (e.g., truncated group listings for users in &gt;10 groups).</td>
+</tr>
+<tr>
+<td>Supported natively by <strong>VBScript and macro languages</strong>, useful for embedding in initial phishing payloads for reconnaissance.</td>
+<td>Less flexible and powerful than PowerShell for bulk or complex queries.</td>
+</tr>
+<tr>
+<td><strong>Does not require a GUI</strong>; can be run in a purely command-line environment.</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>PowerShell</h2>
+<div class="callout callout-info"><div class="callout-title">Prerequisite</div>
+
+<p>The <strong>AD-RSAT tools</strong> (installed in Task 3) provide the PowerShell cmdlets used in this task. Over 50 cmdlets are available.</p>
+</div>
+
+<p>Start a PowerShell session from your SSH terminal:</p>
+<pre><code class="language-powershell">powershell
+</code></pre>
+<h3>Core Enumeration Cmdlets</h3>
+<h4>Users (<code>Get-ADUser</code>)</h4>
+<p>Retrieve all properties for a specific user:</p>
+<pre><code class="language-powershell">Get-ADUser -Identity &lt;Username&gt; -Server &lt;DC_FQDN&gt; -Properties *
+</code></pre>
+<p>Search for users with a filter and format output:</p>
+<pre><code class="language-powershell">Get-ADUser -Filter &#39;Name -like &quot;*stevens&quot;&#39; -Server za.tryhackme.com | Format-Table Name,SamAccountName -AutoSize
+</code></pre>
+<h4>Groups (<code>Get-ADGroup</code>, <code>Get-ADGroupMember</code>)</h4>
+<p>Get group information:</p>
+<pre><code class="language-powershell">Get-ADGroup -Identity &lt;GroupName&gt; -Server &lt;DC_FQDN&gt;
+</code></pre>
+<p>Enumerate group members:</p>
+<pre><code class="language-powershell">Get-ADGroupMember -Identity &lt;GroupName&gt; -Server &lt;DC_FQDN&gt;
+</code></pre>
+<h4>Generic AD Objects (<code>Get-ADObject</code>)</h4>
+<p>Find objects changed after a specific date:</p>
+<pre><code class="language-powershell">$ChangeDate = New-Object DateTime(2022, 02, 28, 12, 00, 00)
+Get-ADObject -Filter &#39;whenChanged -gt $ChangeDate&#39; -IncludeDeletedObjects -Server za.tryhackme.com
+</code></pre>
+<div class="callout callout-tip"><div class="callout-title">Operational Use Case</div>
+
+<p>To avoid accounts during a password spray, filter for those with recent failed attempts:</p>
+<p>powershell</p>
+<p>Get-ADObject -Filter &#39;badPwdCount -gt 0&#39; -Server za.tryhackme.com</p>
+</div>
+
+<h4>Domain Information (<code>Get-ADDomain</code>)</h4>
+<p>Retrieve domain details:</p>
+<pre><code class="language-powershell">Get-ADDomain -Server za.tryhackme.com
+</code></pre>
+<h3>Modification Example</h3>
+<p>While the focus is enumeration, AD-RSAT cmdlets can also modify objects (e.g., force password change):</p>
+<pre><code class="language-powershell">Set-ADAccountPassword -Identity &lt;User&gt; -Server &lt;DC_FQDN&gt; -OldPassword (ConvertTo-SecureString -AsPlainText &quot;old&quot; -Force) -NewPassword (ConvertTo-SecureString -AsPlainText &quot;new&quot; -Force)
+</code></pre>
+<h3>Assessment of PowerShell Enumeration</h3>
+<table>
+<thead>
+<tr>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Far more powerful and comprehensive</strong> than <code>net</code> commands; can enumerate significantly more AD data.</td>
+<td><strong>More heavily monitored</strong> by Blue teams compared to Command Prompt.</td>
+</tr>
+<tr>
+<td>Can be run from a <strong>non-domain-joined machine</strong> by specifying the <code>-Server</code> parameter and using <code>runas</code>-injected credentials.</td>
+<td>Requires installation of <strong>AD-RSAT tooling</strong> or use of potentially detectable third-party scripts.</td>
+</tr>
+<tr>
+<td>Supports <strong>custom cmdlet creation</strong> for tailored enumeration.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Direct AD object modification</strong> is possible with the same toolset (e.g., password resets, group changes).</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Bloodhound</h2>
+<h3>Core Concept: Graphs vs. Lists</h3>
+<div class="callout callout-quote">
+
+<p>&quot;Defenders think in lists, Attackers think in graphs.&quot;
+Bloodhound visualizes AD as a <strong>graph of interconnected nodes</strong> (users, groups, computers, etc.) and <strong>edges</strong> (relationships/permissions), enabling the discovery of complex, multi-hop attack paths that are difficult to see with list-based tools.</p>
+</div>
+
+<h3>Sharphound (The Collector)</h3>
+<p>Sharphound is the data enumeration tool for Bloodhound. Three primary collectors exist:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Collector</th>
+<th align="left">Description</th>
+<th align="left">Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Sharphound.ps1</strong></td>
+<td align="left">PowerShell script.</td>
+<td align="left">Can be loaded into memory to evade on-disk AV.</td>
+</tr>
+<tr>
+<td align="left"><strong>Sharphound.exe</strong></td>
+<td align="left">Windows executable.</td>
+<td align="left">Standard, reliable collection.</td>
+</tr>
+<tr>
+<td align="left"><strong>AzureHound.ps1</strong></td>
+<td align="left">PowerShell script for Azure.</td>
+<td align="left">Enumerates Azure Identity &amp; Access Management data.</td>
+</tr>
+</tbody></table>
+<div class="callout callout-warning"><div class="callout-title">Version Compatibility</div>
+
+<p><strong>Bloodhound and Sharphound versions must match.</strong> This room uses <strong>Bloodhound v4.1.0</strong>.</p>
+</div>
+
+<h4>Executing Sharphound from a Non-Domain-Joined Host</h4>
+<p>Using <code>runas</code>-injected credentials, execute Sharphound from the <code>C:\Tools\</code> directory.</p>
+<ul>
+<li><em>Basic enumeration command:</em>*</li>
+</ul>
+<pre><code class="language-powershell"># Copy to your user directory and execute
+copy C:\Tools\Sharphound.exe ~\Documents\
+cd ~\Documents\
+.\SharpHound.exe --CollectionMethods All --Domain za.tryhackme.com --ExcludeDCs
+</code></pre>
+<ul>
+<li><em>Key Parameters:</em>*</li>
+</ul>
+<ul>
+<li><code>--CollectionMethods</code> – <code>All</code> (first run) or <code>Session</code> (subsequent, faster runs).</li>
+<li><code>--Domain</code> – Specifies the target domain.</li>
+<li><code>--ExcludeDCs</code> – Avoids touching domain controllers to reduce alerts.</li>
+</ul>
+<div class="callout callout-tip"><div class="callout-title">Operational Rhythm</div>
+
+
+<ol>
+<li><p>Run <code>--CollectionMethods All</code> at the start of an assessment.</p>
+</li>
+<li><p>Run <code>--CollectionMethods Session</code> <strong>twice daily</strong> (e.g., ~10:00, ~14:00) to capture fresh logon data.</p>
+</li>
+<li><p>In Bloodhound, <strong>&quot;Clear Session Information&quot;</strong> (Database Info tab) before importing new session data to avoid stale information.</p>
+</li>
+</ol>
+</div>
+
+<h3>Bloodhound (The GUI)</h3>
+<p>Bloodhound uses <strong>Neo4j</strong> as its backend graph database.</p>
+<ul>
+<li><em>Setup (AttackBox):</em>*</li>
+</ul>
+<ol>
+<li>Start Neo4j: <code>neo4j console start</code></li>
+<li>Launch Bloodhound: <code>bloodhound --no-sandbox</code></li>
+<li>Authenticate to the Neo4j database with default credentials: <code>neo4j:neo4j</code></li>
+</ol>
+<ul>
+<li><em>Importing Data:</em>*</li>
+</ul>
+<ol>
+<li><strong>Transfer the ZIP</strong> from the Windows host (e.g., using SCP):<pre><code class="language-bash">
+scp &lt;AD_Username&gt;@THMJMP1.za.tryhackme.com:C:/Users/&lt;AD_Username&gt;/Documents/&lt;Sharphound_ZIP&gt;.zip .
+</code></pre>
+</li>
+<li><strong>Drag and drop</strong> the ZIP file into the Bloodhound GUI.</li>
+</ol>
+<h3>Bloodhound Analysis Workflow</h3>
+<h4>1. Node Information</h4>
+<p>Search for a user/group/computer node. The interface provides detailed panels:</p>
+<ul>
+<li><strong>Overview:</strong> Active sessions, reachable high-value targets.</li>
+<li><strong>Node Properties / Extra Properties:</strong> AD attributes (title, distinguishedName, created date, etc.).</li>
+<li><strong>Group Membership:</strong> Direct and nested group memberships.</li>
+<li><strong>Local Admin Rights:</strong> Machines where the account has local admin privileges.</li>
+<li><strong>Execution Rights:</strong> Privileges like RDP access.</li>
+<li><strong>Outbound/Inbound Control Rights:</strong> Permissions to modify other objects or be modified by them.</li>
+</ul>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020260203183535.png" alt="Pasted image 20260203183535.png"></p>
+<h4>2. Pre-Built Analysis Queries</h4>
+<p>Located under the <strong>&quot;Analysis&quot;</strong> tab. Examples:</p>
+<ul>
+<li><strong>Find all Domain Admins</strong></li>
+<li><strong>Find Kerberoastable Users</strong></li>
+<li><strong>Find Shortest Paths to Domain Admins</strong></li>
+<li><strong>Find Unsupported OSs</strong></li>
+</ul>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020260203183344.png" alt="Pasted image 20260203183344.png"></p>
+<h4>3. Custom Path Finding</h4>
+<p>Use the <strong>&quot;Path Search&quot;</strong> (arrow icon) tool to find attack paths between two nodes (e.g., your user to <code>TIER 1 ADMINS</code> group).</p>
+<ul>
+<li><em>Edge Filters</em>* can be adjusted (filter icon) to include/exclude specific relationship types (e.g., <code>HasSession</code>, <code>AdminTo</code>, <code>CanRDP</code>).</li>
+</ul>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020260203183302.png" alt="Pasted image 20260203183302.png"></p>
+<h3>Example Attack Path Analysis</h3>
+<p>A discovered path might show:</p>
+<ol>
+<li>Your user (Domain User) <strong>→</strong> <code>CanRDP</code> <strong>→</strong> <code>THMJMP1</code> (Workstation).</li>
+<li>A Tier 1 Admin account <strong>→</strong> <code>HasSession</code> <strong>→</strong> <code>THMJMP1</code>.</li>
+<li>Therefore: Compromise <code>THMJMP1</code> via RDP → Perform privilege escalation → Harvest credentials (e.g., Mimikatz) → Capture Tier 1 Admin hash.</li>
+</ol>
+<h3>Assessment of Bloodhound/Sharphound</h3>
+<table>
+<thead>
+<tr>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Graph-based visualization</strong> reveals complex, multi-hop attack paths not visible with list-based tools.</td>
+<td><strong>Sharphound execution is noisy</strong> and often detected by AV/EDR solutions.</td>
+</tr>
+<tr>
+<td><strong>Powerful pre-built and custom queries</strong> for deep AD insights.</td>
+<td>Requires <strong>Neo4j backend</strong>, adding setup complexity.</td>
+</tr>
+<tr>
+<td><strong>Session data tracking</strong> allows for understanding of active user logons and lateral movement opportunities.</td>
+<td><strong>Point-in-time data</strong>; session information becomes stale quickly without regular re-enumeration.</td>
+</tr>
+<tr>
+<td>Can correlate <strong>on-prem AD and Azure (via AzureHound)</strong> data for hybrid environment attacks.</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Conclusion</h2>
+<h3>Summary</h3>
+<p>Proper AD enumeration is a foundational step for understanding domain structure and identifying viable attack paths for privilege escalation and lateral movement. This room covered several core techniques, each with distinct trade-offs.</p>
+<h3>Additional Enumeration Techniques</h3>
+<ul>
+<li><strong>LDAP Enumeration:</strong> Direct LDAP queries can be performed using any valid AD credentials bound to a Domain Controller&#39;s LDAP interface.</li>
+<li><strong>PowerView:</strong> A powerful PowerShell recon script from the (now unsupported) PowerSploit project, useful for semi-manual AD object enumeration.</li>
+<li><strong>Windows Management Instrumentation (WMI):</strong> The WMI provider <code>root\directory\ldap</code> can be used via PowerShell to interact with and query AD.</li>
+</ul>
+</div>
+        <nav class="post-navigation">
+          
+      <a href="/writeups/Active Directory/AD Basics.html" class="nav-link prev-post">
+        <span class="nav-direction">← Previous</span>
+        <span class="nav-title">AD Basics</span>
+      </a>
+    
+          
+      <a href="/writeups/Active Directory/Lateral Movement and Pivoting.html" class="nav-link next-post">
+        <span class="nav-direction">Next →</span>
+        <span class="nav-title">Lateral Movement and Pivoting</span>
+      </a>
+    
+        </nav>
+        
+      </article>
+    </main>
+  </div>
+  <button class="mobile-menu-toggle">☰</button>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/navigation.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/c.min.js" defer></script>
+  <script>
+    (function() {
+      function enhanceCodeBlocks(scope) {
+        const container = scope || document.querySelector('.writeup-content') || document;
+        const blocks = Array.from(container.querySelectorAll('pre > code')).filter(c => !c.closest('.code-block'));
+        blocks.forEach(code => {
+          const pre = code.parentElement;
+          if (!pre || pre.dataset.enhanced === 'true') return;
+          pre.dataset.enhanced = 'true';
+          let langClass = Array.from(code.classList || []).find(c => c.startsWith('language-'));
+          if (!langClass) {
+            const t = code.textContent || '';
+            if (/#include\s+<[^>]+>/.test(t) || /\bint\s+main\s*\(/.test(t) || /#include\s+<Windows\.h>/i.test(t)) {
+              code.classList.add('language-c');
+              langClass = 'language-c';
+            }
+          }
+          const lang = (langClass ? langClass.replace('language-', '') : 'text').toUpperCase();
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          const header = document.createElement('div');
+          header.className = 'code-header';
+          const langEl = document.createElement('span');
+          langEl.className = 'code-lang';
+          langEl.textContent = lang;
+          const btn = document.createElement('button');
+          btn.className = 'code-copy';
+          btn.type = 'button';
+          btn.textContent = 'Copy';
+          btn.addEventListener('click', async () => {
+            const text = code.innerText;
+            const fallbackCopy = () => {
+              const ta = document.createElement('textarea');
+              ta.value = text;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              ta.style.left = '-9999px';
+              document.body.appendChild(ta);
+              ta.focus();
+              ta.select();
+              try {
+                document.execCommand('copy');
+                btn.textContent = 'Copied';
+              } catch (_) {
+                btn.textContent = 'Failed';
+              } finally {
+                document.body.removeChild(ta);
+                setTimeout(() => (btn.textContent = 'Copy'), 1200);
+              }
+            };
+            try {
+              if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                btn.textContent = 'Copied';
+                setTimeout(() => (btn.textContent = 'Copy'), 1200);
+              } else {
+                fallbackCopy();
+              }
+            } catch (_) {
+              fallbackCopy();
+            }
+          });
+          header.appendChild(langEl);
+          header.appendChild(btn);
+          const holder = document.createElement('div');
+          holder.className = 'code-content';
+          pre.replaceWith(wrapper);
+          holder.appendChild(pre);
+          wrapper.appendChild(header);
+          wrapper.appendChild(holder);
+          if (window.hljs && typeof window.hljs.highlightElement === 'function') {
+            window.hljs.highlightElement(code);
+          } else if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+            window.hljs.highlightAll();
+          }
+        });
+      }
+      function indentAfterHeadings(scope) {
+        const container = scope || document.querySelector('.writeup-content');
+        if (!container) return;
+        const headings = container.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        headings.forEach(h => {
+          const level = parseInt(h.tagName.substring(1), 10);
+          let el = h.nextElementSibling;
+          while (el) {
+            if (/^H[1-6]$/.test(el.tagName)) {
+              const nextLevel = parseInt(el.tagName.substring(1), 10);
+              if (nextLevel <= level) break;
+            }
+            if (el.tagName === 'P') {
+              el.classList.add('indent-p');
+            }
+            el = el.nextElementSibling;
+          }
+        });
+      }
+      function initEnhancements() {
+        if (window.mermaid) {
+          mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        }
+        enhanceCodeBlocks();
+        indentAfterHeadings();
+        if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+          window.hljs.highlightAll();
+        }
+        const target = document.querySelector('.writeup-content');
+        if (target && window.MutationObserver) {
+          const mo = new MutationObserver(() => {
+            enhanceCodeBlocks(target);
+            indentAfterHeadings(target);
+            if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+              window.hljs.highlightAll();
+            }
+          });
+          mo.observe(target, { childList: true, subtree: true });
+        }
+      }
+      window.addEventListener('load', initEnhancements);
+    })();
+  </script>
+</body>
+</html>

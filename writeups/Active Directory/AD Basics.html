@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AD Basics - pwn3rx0</title>
+  <meta name="description" content=">Title: Notes for Active Directory Basics >Author: Andrew mamdouh - --  What's the AD">
+  <meta name="keywords" content="cybersecurity, security, writeups, ctf, pentest, hacking, andrew mamdouh, pwn3rx0, andrew_mamdouh, active directory">
+  <meta name="author" content="Andrew Mamdouh (pwn3rx0)">
+  <meta property="og:title" content="AD Basics">
+  <meta property="og:description" content=">Title: Notes for Active Directory Basics >Author: Andrew mamdouh - --  What's the AD">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="/writeups/writeups-images/wallhaven-m93vg9.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="/writeups/Active Directory/AD Basics.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AD Basics">
+  <meta name="twitter:description" content=">Title: Notes for Active Directory Basics >Author: Andrew mamdouh - --  What's the AD">
+  <meta name="twitter:image" content="/writeups/writeups-images/wallhaven-m93vg9.jpg">
+  <meta name="site-base" content="/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="profile-card">
+        <div class="avatar">
+          <img src="/assets/images/profile.jpg" alt="Andrew Mamdouh">
+        </div>
+        <div class="profile-name">Andrew Mamdouh</div>
+        <div class="profile-nick" style="color:#8a8f98;">(pwn3rx0)</div>
+        <nav class="social-tabs">
+          <a class="chip" href="https://github.com/pwn3rx0">GitHub</a>
+          <a class="chip" href="https://www.linkedin.com/in/andrew-mamdouh122/">LinkedIn</a>
+          <a class="chip" href="https://x.com/pwn3rx0">X</a>
+        </nav>
+      </div>
+      <nav class="category-tree"></nav>
+    </aside>
+    <main class="main-content">
+      <nav class="breadcrumbs">
+      
+      <a href="/">Home</a>
+    
+      <span class="separator">/</span>
+      <a href="/category/Active Directory.html">Active Directory</a>
+    
+      <span class="separator">/</span>
+      <span class="current">AD Basics</span>
+    </nav>
+      <article class="writeup">
+        <header>
+          <h1>AD Basics</h1>
+          <div class="writeup-meta">
+            <div class="writeup-date">date: <time datetime="February 23, 2026">February 23, 2026</time></div>
+            <div class="tags-row">
+              <div class="tags-label">tags:</div>
+              <div class="tags"></div>
+            </div>
+            
+          </div>
+        </header>
+        <div class="writeup-content"><blockquote>
+<p>Title: Notes for Active Directory Basics
+Author: Andrew mamdouh</p>
+</blockquote>
+<hr>
+<h3>What&#39;s the AD?</h3>
+<p>Active Directory (AD) is a centralized database and service developed by Microsoft to manage users, computers, and resources in a Windows network. It provides authentication, authorization, and policy enforcement across all devices in a domain, making it the core of enterprise identity management.</p>
+<p><img src="/writeups/writeups-images/wallhaven-m93vg9.jpg" alt="wallhaven-m93vg9.jpg"></p>
+<hr>
+<h3>Why do we use Active Directory?</h3>
+<ul>
+<li>To <strong>centralize identity management</strong>, so administrators can create, manage, and secure user accounts and computers from one place.</li>
+<li>To <strong>enforce security policies</strong> across the network (e.g., password rules, software restrictions, or access permissions).</li>
+<li>To <strong>improve scalability</strong>, allowing organizations with hundreds or thousands of computers and users to manage them efficiently.</li>
+<li>To <strong>provide seamless access</strong>, so users can log in with the same credentials on any domain-joined machine.</li>
+</ul>
+<hr>
+<h3>How does Active Directory work?</h3>
+<ul>
+<li><strong>Domain &amp; Domain Controller:</strong> All resources (users, computers, groups) are stored in a central database on a server called the Domain Controller (DC).</li>
+<li><strong>Authentication:</strong> When a user logs into a computer, the credentials are sent to the DC. The DC checks them against AD using authentication protocols (Kerberos or NTLM).</li>
+<li><strong>Authorization:</strong> Once authenticated, AD determines what the user can access (files, printers, applications) based on permissions and group memberships.</li>
+<li><strong>Policy Enforcement:</strong> Group Policies (GPOs) are applied to users and computers to enforce security settings and configurations across the network.</li>
+<li><strong>Scalability:</strong> AD can connect multiple domains into Trees and Forests, allowing large organizations to manage thousands of users and devices with trust relationships.</li>
+</ul>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020251005213031.png" alt="330"></p>
+<hr>
+<h3>Active Directory Domain Service</h3>
+<p>it is the core  of any Windows Domain. This service acts as a Data Base that holds the information of all of the <strong>objects</strong>.</p>
+<h3>objects:</h3>
+<h5>1.Users:</h5>
+<p>are the most common type of object in AD. They represent accounts that can log into the network and access resources.
+  there is <strong>2 types of user</strong> Accounts:</p>
+<ol>
+<li><strong>People</strong>: Employees, administrators, or students who need access.</li>
+<li><strong>Services</strong>: System-level accounts used by services like SQL Server or IIS to run processes with only the required privileges.</li>
+</ol>
+<hr>
+<h5>2.Machines:</h5>
+<p>Every computer that joins the domain gets its own machine object in AD.</p>
+<ul>
+<li>They have a special account name ending with a <code>$</code> like (PC01$).</li>
+<li>Machine account passwords are long (120+ characters) and are rotated automatically.</li>
+<li>While primarily meant for the system itself, attackers can exploit them if they get the credentials.</li>
+</ul>
+<h5>3. Security Groups:</h5>
+<p>Groups allow administrators to manage permissions collectively instead of assigning them individually for each user.</p>
+<ul>
+<li>Can include both users and computers. Groups can even contain other groups.</li>
+<li><strong>Default Security Groups in a Domain</strong> include:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Security Group</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Domain Admins</strong></td>
+<td>Full control of the entire domain and all machines.</td>
+</tr>
+<tr>
+<td><strong>Server Operators</strong></td>
+<td>Manage Domain Controllers but can’t change group memberships.</td>
+</tr>
+<tr>
+<td><strong>Backup Operators</strong></td>
+<td>Can read all files for backup purposes.</td>
+</tr>
+<tr>
+<td><strong>Account Operators</strong></td>
+<td>Can create/modify accounts within the domain.</td>
+</tr>
+<tr>
+<td><strong>Domain Users</strong></td>
+<td>Contains all user accounts.</td>
+</tr>
+<tr>
+<td><strong>Domain Computers</strong></td>
+<td>Contains all computer accounts.</td>
+</tr>
+</tbody></table>
+<hr>
+<h4>Organizational Units (OUs)</h4>
+<p> are container objects that allow you to classify users and machines. OUs are mainly used to define sets of users with similar policing requirements.</p>
+<ul>
+<li>Keep in mind that a user can only be a part of a single OU at a time.</li>
+<li><strong>Default Containers</strong> created by Windows include:<ul>
+<li><strong>Builtin</strong> : Contains default groups for all Windows hosts.</li>
+<li><strong>Computers</strong> : Default location for newly joined machines.</li>
+<li><strong>Users</strong> : Contains default domain-wide user and group objects.</li>
+<li><strong>Domain Controllers</strong> : Holds the DC accounts.</li>
+<li><strong>Managed Service Accounts</strong> : Holds service-specific accounts.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4>Security Groups vs. OUs</h4>
+<p>Both groups and OUs are used for organizing users and computers, but they serve different purposes:</p>
+<ul>
+<li><strong>Organizational Units (OUs):</strong><ul>
+<li>Used for <strong>policy application</strong> (security settings, software deployment, restrictions).</li>
+<li>A user can only belong to <strong>one OU</strong>.</li>
+</ul>
+</li>
+<li><strong>Security Groups:</strong><ul>
+<li>Used for <strong>permission management</strong> (files, folders, printers, shared drives).</li>
+<li>A user can belong to <strong>multiple groups</strong>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4>Deleting extra OUs and users</h4>
+<p>if u get this error:
+<img src="/writeups/writeups-images/Pasted%20image%2020251005224416.png" alt="470">
+By default, OUs are protected against accidental deletion. To delete the OU, we need to enable the <strong>Advanced Features</strong> in the View menu:
+<img src="/writeups/writeups-images/Pasted%20image%2020251005224433.png" alt="640">
+then right-click the OU and go to Properties. You will find a checkbox in the Object tab to disable the protection:
+<img src="/writeups/writeups-images/Pasted%20image%2020251005224715.png" alt="400"></p>
+<hr>
+<h4>Delegation</h4>
+<p>it is give specific users some control over some OUs. allows you to grant users specific privileges to perform advanced tasks on OUs without needing a Domain Administrator</p>
+<ul>
+<li><em>steps:</em>*
+<img src="/writeups/writeups-images/Pasted%20image%2020251005225450.png" alt="300">
+This should open a new window where you will first be asked for the users to whom you want to delegate control:</li>
+</ul>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020251005232537.png" alt="500">
+Click OK, and on the next step, select the following option:
+<img src="/writeups/writeups-images/Pasted%20image%2020251005232600.png" alt="450"></p>
+<hr>
+<p><img src="/writeups/writeups-images/563124.jpg" alt="563124.jpg"></p>
+<hr>
+<p>While there is no golden rule on how to organise your machines, an excellent starting point is segregating devices according to their use. In general, you&#39;d expect to see devices divided into at least the three following categories:</p>
+<ul>
+<li><p><em>1. Workstations</em>*
+Workstations are one of the most common devices within an Active Directory domain. Each user in the domain will likely be logging into a workstation. This is the device they will use to do their work or normal browsing activities. These devices should never have a privileged user signed into them.</p>
+</li>
+<li><p><em>2. Servers</em>*
+Servers are the second most common device within an Active Directory domain. Servers are generally used to provide services to users or other servers.</p>
+</li>
+<li><p><em>3. Domain Controllers</em>*
+Domain Controllers are the third most common device within an Active Directory domain. Domain Controllers allow you to manage the Active Directory Domain. These devices are often deemed the most sensitive devices within the network as they contain hashed passwords for all user accounts within the environment.</p>
+</li>
+</ul>
+<hr>
+<h4>Group Policy Objects (GPO)</h4>
+<p>GPOs are simply a collection of settings that can be applied to OUs. GPOs can contain policies aimed at either users or computers, allowing you to set a baseline on specific machines and identities.</p>
+<h4>What is a GPO</h4>
+<ul>
+<li>A <strong>Group Policy Object (GPO)</strong> is a collection of settings that can apply to either <strong>users</strong> or <strong>computers</strong>.</li>
+<li>GPOs are created in the <strong>Group Policy Management Console (GPMC)</strong> and then <strong>linked</strong> to OUs.</li>
+<li>Policies apply to the OU and all of its sub-OUs.</li>
+<li>By default, GPOs apply to <strong>Authenticated Users</strong> (all users and computers in the OU). Security Filtering can be used to narrow the scope.</li>
+</ul>
+<hr>
+<h4>Viewing &amp; Editing GPOs</h4>
+<ul>
+<li>Open <strong>Group Policy Management</strong> from the Start Menu.</li>
+<li>Under <strong>Group Policy Objects</strong>, create a new GPO or select an existing one (e.g., <em>Default Domain Policy</em>).</li>
+<li><strong>Scope tab</strong> → shows where the GPO is linked.</li>
+<li><strong>Settings tab</strong> → lists all active policies inside the GPO (divided into Computer Configuration and User Configuration).</li>
+<li><strong>Edit GPO</strong> → navigate through:<ul>
+<li>Computer Configuration → Policies → Windows Settings → Security Settings_</li>
+<li>User Configuration → Policies → Administrative Templates</li>
+</ul>
+</li>
+</ul>
+<p><img src="/writeups/writeups-images/Pasted%20image%2020251006004140.png" alt="700"></p>
+<hr>
+<p>When using Windows domains, all credentials are stored in the Domain Controllers. Whenever a user tries to authenticate to a service using domain credentials, the service will need to ask the Domain Controller to verify if they are correct. Two protocols can be used for network authentication in windows domains:</p>
+<ul>
+<li><strong>Kerberos:</strong> Used by any recent version of Windows. This is the default protocol in any recent domain.</li>
+<li><strong>NetNTLM:</strong> Legacy authentication protocol kept for compatibility purposes.</li>
+</ul>
+<h4>Kerberos Authentication</h4>
+<p>Authentication based on <strong>tickets</strong> instead of resending credentials.</p>
+<ul>
+<li><em>Steps:</em>*</li>
+</ul>
+<ol>
+<li><strong>Initial Authentication (AS-REQ / AS-REP):</strong><ul>
+<li>User → Authentication Service (AS) on the Key Distribution Center KDC (on DC).</li>
+<li>Sends: username + timestamp, encrypted with key derived from user password.</li>
+<li>KDC responds with:<ul>
+<li><strong>Session Key</strong> – used for further communication.</li>
+<li><strong>TGT encrypted with krbtgt account hash</strong> (user cannot read).
+<img src="/writeups/writeups-images/Pasted%20image%2020251006005400.png" alt="400"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Request Service Ticket (TGS-REQ / TGS-REP):</strong><ul>
+<li>User wants a service (e.g., file share, DB).</li>
+<li>Sends to KDC: TGT + username + timestamp (encrypted with Session Key) + SPN (service identifier).</li>
+<li>KDC responds with:<ul>
+<li><strong>TGS (Ticket Granting Service)</strong> – specific to service.</li>
+<li><strong>Service Session Key</strong>.</li>
+</ul>
+</li>
+<li><strong>TGS encrypted with service account hash</strong> (service can decrypt).
+ <img src="/writeups/writeups-images/Pasted%20image%2020251006005448.png" alt="400"></li>
+</ul>
+</li>
+<li><strong>Service Authentication:</strong><ul>
+<li>User → sends TGS to service.</li>
+<li>Service decrypts TGS using its account hash → validates Service Session Key.</li>
+<li>Connection established.
+ <img src="/writeups/writeups-images/Pasted%20image%2020251006005502.png" alt="460"></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><em>Notes:</em>*</li>
+</ul>
+<ul>
+<li>TGT allows requesting service tickets <strong>without re-entering password</strong>.</li>
+<li>KDC doesn’t store Session Key → can regenerate by decrypting TGT.</li>
+</ul>
+<hr>
+<h4>NetNTLM Authentication</h4>
+<ul>
+<li><em>Challenge-response</em>* mechanism (no password sent across network).</li>
+<li><em>Steps:</em>*
+<img src="/writeups/writeups-images/Pasted%20image%2020251006005548.png" alt="460"></li>
+</ul>
+<ol>
+<li>Client → sends authentication request to server.</li>
+<li>Server → sends random <strong>challenge</strong>.</li>
+<li>Client → uses NTLM password hash + challenge + known data → generates <strong>response</strong>, sends back.</li>
+<li>Server → forwards challenge + response to DC.</li>
+<li>DC → recalculates response using stored hash → compares with client’s response.<ul>
+<li>Match = authentication successful.</li>
+</ul>
+</li>
+<li>Server → relays result back to client.</li>
+</ol>
+<ul>
+<li><em>Notes:</em>*</li>
+</ul>
+<ul>
+<li>Password (or hash) never transmitted directly.</li>
+<li><strong>Domain account:</strong> DC verifies challenge-response.</li>
+<li><strong>Local account:</strong> Server verifies itself using local SAM (has password hash).</li>
+</ul>
+<hr>
+<h4>1. Single Domain</h4>
+<ul>
+<li>One domain (e.g., <strong>thm.local</strong>) can manage users, computers, and servers.</li>
+<li>Scales well at first but becomes harder as companies expand and diversify.
+<img src="/writeups/writeups-images/Pasted%20image%2020251006012405.png" alt="250"></li>
+</ul>
+<h4>2. Trees</h4>
+<ul>
+<li><strong>Definition:</strong> Multiple domains in the <strong>same namespace</strong> grouped together.</li>
+<li>Example:<ul>
+<li>Root domain: <code>thm.local</code>.</li>
+<li>Subdomains: <code>uk.thm.local</code>, <code>us.thm.local</code>.</li>
+</ul>
+</li>
+<li><strong>Benefits:</strong><ul>
+<li>Partitioned management (UK IT manages UK, US IT manages US).</li>
+<li>Independent <strong>Domain Controllers</strong> per branch.</li>
+<li>Policies configured separately.</li>
+</ul>
+</li>
+<li><strong>Admin roles:</strong><ul>
+<li><strong>Domain Admins</strong> → control their specific domain.</li>
+<li><strong>Enterprise Admins</strong> → admin privileges across all domains in enterprise (tree/forest).
+  <img src="/writeups/writeups-images/Pasted%20image%2020251006012420.png" alt="300"></li>
+</ul>
+</li>
+</ul>
+<h4>3. Forests</h4>
+<ul>
+<li><strong>Definition:</strong> Union of multiple <strong>trees with different namespaces</strong>.</li>
+<li>Example:<ul>
+<li>Company THM (<code>thm.local</code>).</li>
+<li>Company MHT (<code>mht.local</code>).</li>
+<li>Together → form a <strong>forest</strong>.</li>
+</ul>
+</li>
+<li><strong>Purpose:</strong> Allows separate organizations/domains to coexist in the same network environment.</li>
+<li>Each tree keeps its <strong>independent namespace</strong> but can interact via <strong>trusts</strong>.
+<img src="/writeups/writeups-images/Pasted%20image%2020251006012439.png" alt="400"></li>
+</ul>
+<hr>
+<h4>Trust Relationships</h4>
+<ul>
+<li><strong>Purpose:</strong> Allow users in one domain to access resources in another.</li>
+<li>Example: THM UK user accessing MHT EU server.</li>
+<li><strong>Types:</strong><ul>
+<li><strong>One-way trust:</strong> Domain A → trusts Domain B → B users can access A’s resources (not vice versa).</li>
+<li><strong>Two-way trust:</strong> Both domains mutually trust each other → both sides can access cross domain resources.</li>
+<li><strong>Default:</strong> Two-way trust automatically created when domains join a tree/forest.</li>
+</ul>
+</li>
+<li><strong>Important:</strong> Trusts only enable the <em>possibility</em> of cross-domain access.<ul>
+<li>Actual access requires <strong>explicit authorization</strong> to resources.
+  <img src="/writeups/writeups-images/Pasted%20image%2020251006012454.png" alt="350"></li>
+</ul>
+</li>
+</ul>
+</div>
+        <nav class="post-navigation">
+          <span class="nav-link disabled"><span class="nav-direction">← Previous</span><span class="nav-title">No older post</span></span>
+          
+      <a href="/writeups/Active Directory/Enumerating Active Directory.html" class="nav-link next-post">
+        <span class="nav-direction">Next →</span>
+        <span class="nav-title">Enumerating Active Directory</span>
+      </a>
+    
+        </nav>
+        
+      </article>
+    </main>
+  </div>
+  <button class="mobile-menu-toggle">☰</button>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/navigation.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/c.min.js" defer></script>
+  <script>
+    (function() {
+      function enhanceCodeBlocks(scope) {
+        const container = scope || document.querySelector('.writeup-content') || document;
+        const blocks = Array.from(container.querySelectorAll('pre > code')).filter(c => !c.closest('.code-block'));
+        blocks.forEach(code => {
+          const pre = code.parentElement;
+          if (!pre || pre.dataset.enhanced === 'true') return;
+          pre.dataset.enhanced = 'true';
+          let langClass = Array.from(code.classList || []).find(c => c.startsWith('language-'));
+          if (!langClass) {
+            const t = code.textContent || '';
+            if (/#include\s+<[^>]+>/.test(t) || /\bint\s+main\s*\(/.test(t) || /#include\s+<Windows\.h>/i.test(t)) {
+              code.classList.add('language-c');
+              langClass = 'language-c';
+            }
+          }
+          const lang = (langClass ? langClass.replace('language-', '') : 'text').toUpperCase();
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          const header = document.createElement('div');
+          header.className = 'code-header';
+          const langEl = document.createElement('span');
+          langEl.className = 'code-lang';
+          langEl.textContent = lang;
+          const btn = document.createElement('button');
+          btn.className = 'code-copy';
+          btn.type = 'button';
+          btn.textContent = 'Copy';
+          btn.addEventListener('click', async () => {
+            const text = code.innerText;
+            const fallbackCopy = () => {
+              const ta = document.createElement('textarea');
+              ta.value = text;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              ta.style.left = '-9999px';
+              document.body.appendChild(ta);
+              ta.focus();
+              ta.select();
+              try {
+                document.execCommand('copy');
+                btn.textContent = 'Copied';
+              } catch (_) {
+                btn.textContent = 'Failed';
+              } finally {
+                document.body.removeChild(ta);
+                setTimeout(() => (btn.textContent = 'Copy'), 1200);
+              }
+            };
+            try {
+              if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                btn.textContent = 'Copied';
+                setTimeout(() => (btn.textContent = 'Copy'), 1200);
+              } else {
+                fallbackCopy();
+              }
+            } catch (_) {
+              fallbackCopy();
+            }
+          });
+          header.appendChild(langEl);
+          header.appendChild(btn);
+          const holder = document.createElement('div');
+          holder.className = 'code-content';
+          pre.replaceWith(wrapper);
+          holder.appendChild(pre);
+          wrapper.appendChild(header);
+          wrapper.appendChild(holder);
+          if (window.hljs && typeof window.hljs.highlightElement === 'function') {
+            window.hljs.highlightElement(code);
+          } else if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+            window.hljs.highlightAll();
+          }
+        });
+      }
+      function indentAfterHeadings(scope) {
+        const container = scope || document.querySelector('.writeup-content');
+        if (!container) return;
+        const headings = container.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        headings.forEach(h => {
+          const level = parseInt(h.tagName.substring(1), 10);
+          let el = h.nextElementSibling;
+          while (el) {
+            if (/^H[1-6]$/.test(el.tagName)) {
+              const nextLevel = parseInt(el.tagName.substring(1), 10);
+              if (nextLevel <= level) break;
+            }
+            if (el.tagName === 'P') {
+              el.classList.add('indent-p');
+            }
+            el = el.nextElementSibling;
+          }
+        });
+      }
+      function initEnhancements() {
+        if (window.mermaid) {
+          mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        }
+        enhanceCodeBlocks();
+        indentAfterHeadings();
+        if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+          window.hljs.highlightAll();
+        }
+        const target = document.querySelector('.writeup-content');
+        if (target && window.MutationObserver) {
+          const mo = new MutationObserver(() => {
+            enhanceCodeBlocks(target);
+            indentAfterHeadings(target);
+            if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+              window.hljs.highlightAll();
+            }
+          });
+          mo.observe(target, { childList: true, subtree: true });
+        }
+      }
+      window.addEventListener('load', initEnhancements);
+    })();
+  </script>
+</body>
+</html>

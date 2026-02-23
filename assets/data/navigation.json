@@ -1,0 +1,1015 @@
+{
+  "categories": {
+    "Active Directory": {
+      "type": "directory",
+      "name": "Active Directory",
+      "path": "Active Directory",
+      "children": {
+        "AD Basics": {
+          "type": "file",
+          "name": "AD Basics",
+          "path": "/writeups/Active Directory/AD Basics.html",
+          "title": "AD Basics",
+          "date": "2026-02-23",
+          "tags": [],
+          "series": null,
+          "excerpt": ">Title: Notes for Active Directory Basics >Author: Andrew mamdouh - --  What's the AD",
+          "image": null
+        },
+        "Enumerating Active Directory": {
+          "type": "file",
+          "name": "Enumerating Active Directory",
+          "path": "/writeups/Active Directory/Enumerating Active Directory.html",
+          "title": "Enumerating Active Directory",
+          "date": "2026-02-23",
+          "tags": [],
+          "series": null,
+          "excerpt": ">Title: Notes for Enumerating Active Directory >Author: Andrew Mamdouh  ",
+          "image": null
+        },
+        "Lateral Movement and Pivoting": {
+          "type": "file",
+          "name": "Lateral Movement and Pivoting",
+          "path": "/writeups/Active Directory/Lateral Movement and Pivoting.html",
+          "title": "Lateral Movement and Pivoting",
+          "date": "2026-02-23",
+          "tags": [],
+          "series": null,
+          "excerpt": ">Title: Notes for Active Directory Basics >Author: Andrew mamdouh   What is Lateral Movement",
+          "image": null
+        }
+      },
+      "postCount": 3
+    },
+    "Malware DEV": {
+      "type": "directory",
+      "name": "Malware DEV",
+      "path": "Malware DEV",
+      "children": {
+        "DLL": {
+          "type": "directory",
+          "name": "DLL",
+          "path": "Malware DEV/DLL",
+          "children": {
+            "DLL": {
+              "type": "file",
+              "name": "DLL",
+              "path": "/writeups/Malware DEV/DLL/DLL.html",
+              "title": "DLL",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "A DLL (Dynamic Link Library) is a file that contains code, data, and resources that can be used by multiple programs at the same time",
+              "image": null
+            },
+            "Manual DLL Call": {
+              "type": "file",
+              "name": "Manual DLL Call",
+              "path": "/writeups/Malware DEV/DLL/Manual DLL Call.html",
+              "title": "Manual DLL Call",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "Manual DLL Function call in Windows   Overview  In Windows programming, you often link DLLs at compile-time",
+              "image": null
+            }
+          },
+          "postCount": 2
+        },
+        "Encryption": {
+          "type": "directory",
+          "name": "Encryption",
+          "path": "Malware DEV/Encryption",
+          "children": {
+            "AES tiny": {
+              "type": "file",
+              "name": "AES tiny",
+              "path": "/writeups/Malware DEV/Encryption/AES tiny.html",
+              "title": "AES tiny",
+              "date": "2026-02-23",
+              "tags": [
+                "malware",
+                "encryption",
+                "aes",
+                "windows"
+              ],
+              "series": null,
+              "excerpt": "Using Tiny AES for Shellcode Encryption and Decryption in Visual Studio  - Tiny AES is a minimal and portable AES implementation in C",
+              "image": null
+            },
+            "Encryption": {
+              "type": "file",
+              "name": "Encryption",
+              "path": "/writeups/Malware DEV/Encryption/Encryption.html",
+              "title": "Encryption",
+              "date": "2026-02-23",
+              "tags": [
+                "malware",
+                "encryption",
+                "windows"
+              ],
+              "series": null,
+              "excerpt": "[AES tiny](/writeups/Malware%20DEV/Encryption/AES%20tiny",
+              "image": null
+            },
+            "RC4 Native API": {
+              "type": "file",
+              "name": "RC4 Native API",
+              "path": "/writeups/Malware DEV/Encryption/RC4 Native API.html",
+              "title": "RC4 Native API",
+              "date": "2026-02-23",
+              "tags": [
+                "malware",
+                "encryption",
+                "rc4",
+                "windows",
+                "windows-api"
+              ],
+              "series": null,
+              "excerpt": "RC4 Stream Cipher (Windows Native API Style)  - RC4 is a symmetric stream cipher used for encrypting byte streams",
+              "image": null
+            },
+            "XOR 1 Key": {
+              "type": "file",
+              "name": "XOR 1 Key",
+              "path": "/writeups/Malware DEV/Encryption/XOR 1 Key.html",
+              "title": "XOR 1 Key",
+              "date": "2026-02-23",
+              "tags": [
+                "malware",
+                "encryption",
+                "xor",
+                "windows"
+              ],
+              "series": null,
+              "excerpt": "- XOR (Exclusive OR) is a bitwise operation used in encryption/decryption",
+              "image": null
+            },
+            "XOR KEYS": {
+              "type": "file",
+              "name": "XOR KEYS",
+              "path": "/writeups/Malware DEV/Encryption/XOR KEYS.html",
+              "title": "XOR KEYS",
+              "date": "2026-02-23",
+              "tags": [
+                "malware",
+                "encryption",
+                "xor",
+                "keys",
+                "windows",
+                "include"
+              ],
+              "series": null,
+              "excerpt": "XOR with Multiple Keys  - Multi-key XOR uses a sequence of key bytes instead of a single key",
+              "image": null
+            }
+          },
+          "postCount": 5
+        },
+        "Execution": {
+          "type": "directory",
+          "name": "Execution",
+          "path": "Malware DEV/Execution",
+          "children": {
+            "APC Injection": {
+              "type": "file",
+              "name": "APC Injection",
+              "path": "/writeups/Malware DEV/Execution/APC Injection.html",
+              "title": "APC Injection",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "",
+              "image": null
+            },
+            "Callback Execution": {
+              "type": "file",
+              "name": "Callback Execution",
+              "path": "/writeups/Malware DEV/Execution/Callback Execution.html",
+              "title": "Callback Execution",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "",
+              "image": null
+            },
+            "Execution": {
+              "type": "file",
+              "name": "Execution",
+              "path": "/writeups/Malware DEV/Execution/Execution.html",
+              "title": "Execution",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "[Local Payload Execution](/writeups/local-payload-execution",
+              "image": null
+            },
+            "Local Dll Execution": {
+              "type": "file",
+              "name": "Local Dll Execution",
+              "path": "/writeups/Malware DEV/Execution/Local Dll Execution.html",
+              "title": "Local Dll Execution",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "Overview:  Local DLL Execution is a technique in which a compiled executable dynamically loads a Dynamic-Link Library (DLL) at runtime",
+              "image": null
+            },
+            "Local Payload Execution": {
+              "type": "file",
+              "name": "Local Payload Execution",
+              "path": "/writeups/Malware DEV/Execution/Local Payload Execution.html",
+              "title": "Local Payload Execution",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "is a technique used to run a binary payload (often shellcode) directly within the memory space of a process on a local machine",
+              "image": null
+            },
+            "Remote Dll injection": {
+              "type": "file",
+              "name": "Remote Dll injection",
+              "path": "/writeups/Malware DEV/Execution/Remote Dll injection.html",
+              "title": "Remote Dll injection",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "What is Remote DLL Injection",
+              "image": null
+            },
+            "Remote ShellCode Injection": {
+              "type": "file",
+              "name": "Remote ShellCode Injection",
+              "path": "/writeups/Malware DEV/Execution/Remote ShellCode Injection.html",
+              "title": "Remote ShellCode Injection",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "This program demonstrates injecting shellcode into another running process on Windows",
+              "image": null
+            }
+          },
+          "postCount": 7
+        },
+        "Make Malware": {
+          "type": "file",
+          "name": "Make Malware",
+          "path": "/writeups/Malware DEV/Make Malware.html",
+          "title": "Make Malware",
+          "date": "2026-02-23",
+          "tags": [],
+          "series": null,
+          "excerpt": "[Execution](/writeups/Malware%20DEV/Execution/Execution",
+          "image": null
+        },
+        "Obfuscation": {
+          "type": "directory",
+          "name": "Obfuscation",
+          "path": "Malware DEV/Obfuscation",
+          "children": {
+            "Obfuscation Tools": {
+              "type": "file",
+              "name": "Obfuscation Tools",
+              "path": "/writeups/Malware DEV/Obfuscation/Obfuscation Tools.html",
+              "title": "Obfuscation Tools",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "",
+              "image": null
+            },
+            "Obfuscation": {
+              "type": "file",
+              "name": "Obfuscation",
+              "path": "/writeups/Malware DEV/Obfuscation/Obfuscation.html",
+              "title": "Obfuscation",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "[To IPs](/writeups/to-ips",
+              "image": null
+            },
+            "To IPs": {
+              "type": "file",
+              "name": "To IPs",
+              "path": "/writeups/Malware DEV/Obfuscation/To IPs.html",
+              "title": "To IPs",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "This technique leverages IPv4 address encoding to obfuscate raw shellcode bytes into human-readable IP strings",
+              "image": null
+            }
+          },
+          "postCount": 3
+        },
+        "Payload Placement": {
+          "type": "directory",
+          "name": "Payload Placement",
+          "path": "Malware DEV/Payload Placement",
+          "children": {
+            "Payload Placement": {
+              "type": "file",
+              "name": "Payload Placement",
+              "path": "/writeups/Malware DEV/Payload Placement/Payload Placement.html",
+              "title": "Payload Placement",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "[Stageless Payload](/writeups/stageless-payload",
+              "image": null
+            },
+            "Staged": {
+              "type": "directory",
+              "name": "Staged",
+              "path": "Malware DEV/Payload Placement/Staged",
+              "children": {
+                "HTTP Stageing": {
+                  "type": "file",
+                  "name": "HTTP Stageing",
+                  "path": "/writeups/Malware DEV/Payload Placement/Staged/HTTP Stageing.html",
+                  "title": "HTTP Stageing",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "An HTTP Stager is a lightweight initial payload used in multi-stage exploitation frameworks",
+                  "image": null
+                },
+                "Staged Payload": {
+                  "type": "file",
+                  "name": "Staged Payload",
+                  "path": "/writeups/Malware DEV/Payload Placement/Staged/Staged Payload.html",
+                  "title": "Staged Payload",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "[HTTP Stageing](/writeups/Malware%20DEV/Payload%20Placement/Staged/HTTP%20Stageing",
+                  "image": null
+                }
+              },
+              "postCount": 2
+            },
+            "Stageless": {
+              "type": "directory",
+              "name": "Stageless",
+              "path": "Malware DEV/Payload Placement/Stageless",
+              "children": {
+                "In Data Section": {
+                  "type": "file",
+                  "name": "In Data Section",
+                  "path": "/writeups/Malware DEV/Payload Placement/Stageless/In Data Section.html",
+                  "title": "In Data Section",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "Data Placement Payload in Data Section   Key Points  - The payload (shellcode) is stored in the data section of the executable",
+                  "image": null
+                },
+                "In Rdata section": {
+                  "type": "file",
+                  "name": "In Rdata section",
+                  "path": "/writeups/Malware DEV/Payload Placement/Stageless/In Rdata section.html",
+                  "title": "In Rdata section",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "Data Placement Payload in ",
+                  "image": null
+                },
+                "In Rsrc Section": {
+                  "type": "file",
+                  "name": "In Rsrc Section",
+                  "path": "/writeups/Malware DEV/Payload Placement/Stageless/In Rsrc Section.html",
+                  "title": "In Rsrc Section",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "Data Placement Payload in Resource Section (RSRC)   Concept Overview  Embedding a payload in the resource section of an executable is an advanced tech...",
+                  "image": null
+                },
+                "In Text Secrion": {
+                  "type": "file",
+                  "name": "In Text Secrion",
+                  "path": "/writeups/Malware DEV/Payload Placement/Stageless/In Text Secrion.html",
+                  "title": "In Text Secrion",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "Data Placement Payload in ",
+                  "image": null
+                },
+                "Stageless Payload": {
+                  "type": "file",
+                  "name": "Stageless Payload",
+                  "path": "/writeups/Malware DEV/Payload Placement/Stageless/Stageless Payload.html",
+                  "title": "Stageless Payload",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "[In Text Secrion](/writeups/Malware%20DEV/Payload%20Placement/Stageless/In%20Text%20Secrion",
+                  "image": null
+                }
+              },
+              "postCount": 5
+            }
+          },
+          "postCount": 8
+        },
+        "Windows API": {
+          "type": "directory",
+          "name": "Windows API",
+          "path": "Malware DEV/Windows API",
+          "children": {
+            "Windows API": {
+              "type": "file",
+              "name": "Windows API",
+              "path": "/writeups/Malware DEV/Windows API/Windows API.html",
+              "title": "Windows API",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "The Windows API (WinAPI) is a collection of functions and tools from Microsoft that lets programs interact directly with the Windows operating system",
+              "image": null
+            },
+            "functions": {
+              "type": "directory",
+              "name": "functions",
+              "path": "Malware DEV/Windows API/functions",
+              "children": {
+                "DLL Stuff": {
+                  "type": "directory",
+                  "name": "DLL Stuff",
+                  "path": "Malware DEV/Windows API/functions/DLL Stuff",
+                  "children": {
+                    "GetModuleHandelw": {
+                      "type": "file",
+                      "name": "GetModuleHandelw",
+                      "path": "/writeups/Malware DEV/Windows API/functions/DLL Stuff/GetModuleHandelw.html",
+                      "title": "GetModuleHandelw",
+                      "date": "2026-02-23",
+                      "tags": [],
+                      "series": null,
+                      "excerpt": "GetModuleHandleW is a Windows API function used to get a handle (reference) to a loaded module (like ",
+                      "image": null
+                    },
+                    "LoadLibrary": {
+                      "type": "file",
+                      "name": "LoadLibrary",
+                      "path": "/writeups/Malware DEV/Windows API/functions/DLL Stuff/LoadLibrary.html",
+                      "title": "LoadLibrary",
+                      "date": "2026-02-23",
+                      "tags": [],
+                      "series": null,
+                      "excerpt": "LoadLibraryW is a Windows API function used to load a dynamic-link library (DLL) into the current process's memory",
+                      "image": null
+                    }
+                  },
+                  "postCount": 2
+                },
+                "Memory Stuff": {
+                  "type": "directory",
+                  "name": "Memory Stuff",
+                  "path": "Malware DEV/Windows API/functions/Memory Stuff",
+                  "children": {
+                    "Allocate Memory": {
+                      "type": "file",
+                      "name": "Allocate Memory",
+                      "path": "/writeups/Malware DEV/Windows API/functions/Memory Stuff/Allocate Memory.html",
+                      "title": "Allocate Memory",
+                      "date": "2026-02-23",
+                      "tags": [],
+                      "series": null,
+                      "excerpt": "there is 3 functions to Allocates Memory: - malloc(); - HeapAlloc(); - LocalAlloc(); - --  malloc    - Allocates memory from the C runtime heap",
+                      "image": null
+                    },
+                    "Memcpy": {
+                      "type": "file",
+                      "name": "Memcpy",
+                      "path": "/writeups/Malware DEV/Windows API/functions/Memory Stuff/Memcpy.html",
+                      "title": "Memcpy",
+                      "date": "2026-02-23",
+                      "tags": [],
+                      "series": null,
+                      "excerpt": "> Copies bytes between buffers",
+                      "image": null
+                    }
+                  },
+                  "postCount": 2
+                },
+                "Win API Functions": {
+                  "type": "file",
+                  "name": "Win API Functions",
+                  "path": "/writeups/Malware DEV/Windows API/functions/Win API Functions.html",
+                  "title": "Win API Functions",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "Common WinAPI Functions (Names Only)  - [MessageBox](/writeups/messagebox",
+                  "image": null
+                },
+                "normall Stuff": {
+                  "type": "directory",
+                  "name": "normall Stuff",
+                  "path": "Malware DEV/Windows API/functions/normall Stuff",
+                  "children": {
+                    "CreateFile": {
+                      "type": "file",
+                      "name": "CreateFile",
+                      "path": "/writeups/Malware DEV/Windows API/functions/normall Stuff/CreateFile.html",
+                      "title": "CreateFile",
+                      "date": "2026-02-23",
+                      "tags": [],
+                      "series": null,
+                      "excerpt": "there is 2 functions to create file - CreateFileW( ); // utf-16 the most usage - CreateFileA( ); // utf-8 (win turn it to utf-16)  [Create File](https...",
+                      "image": null
+                    },
+                    "MessageBox": {
+                      "type": "file",
+                      "name": "MessageBox",
+                      "path": "/writeups/Malware DEV/Windows API/functions/normall Stuff/MessageBox.html",
+                      "title": "MessageBox",
+                      "date": "2026-02-23",
+                      "tags": [],
+                      "series": null,
+                      "excerpt": "[messagebox](https://learn",
+                      "image": null
+                    }
+                  },
+                  "postCount": 2
+                }
+              },
+              "postCount": 7
+            }
+          },
+          "postCount": 8
+        }
+      },
+      "postCount": 34
+    },
+    "ctf notes": {
+      "type": "directory",
+      "name": "ctf notes",
+      "path": "ctf notes",
+      "children": {
+        "crypto": {
+          "type": "directory",
+          "name": "crypto",
+          "path": "ctf notes/crypto",
+          "children": {
+            "Steganography": {
+              "type": "file",
+              "name": "Steganography",
+              "path": "/writeups/ctf notes/crypto/Steganography.html",
+              "title": "Steganography",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "extract data from JPEG, BMP, WAV, AU",
+              "image": null
+            },
+            "encode": {
+              "type": "file",
+              "name": "encode",
+              "path": "/writeups/ctf notes/crypto/encode.html",
+              "title": "encode",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "Base64 bash echo \"aGVsbG8=\" | base64 -d   hex → ascii bash echo 68656c6c6f | xxd -r -p   ascii → hex bash echo -n \"hello\" | xxd -p   Binary ↔ ASCII  e...",
+              "image": null
+            },
+            "hash": {
+              "type": "file",
+              "name": "hash",
+              "path": "/writeups/ctf notes/crypto/hash.html",
+              "title": "hash",
+              "date": "2026-02-23",
+              "tags": [],
+              "series": null,
+              "excerpt": "Hashes  Hash  Length (       Example MD5      32 chars  5d41402abc4b2a76b9719d911017c592 SHA1  40 chars  2aae6c35c94fcfb415dbe95f408b9ce91ee846ed SHA2...",
+              "image": null
+            }
+          },
+          "postCount": 3
+        },
+        "network": {
+          "type": "directory",
+          "name": "network",
+          "path": "ctf notes/network",
+          "children": {
+            "Priv esc": {
+              "type": "directory",
+              "name": "Priv esc",
+              "path": "ctf notes/network/Priv esc",
+              "children": {
+                "linux": {
+                  "type": "file",
+                  "name": "linux",
+                  "path": "/writeups/ctf notes/network/Priv esc/linux.html",
+                  "title": "linux",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "Check Users & History bash cat /etc/passwd last history cat ~/",
+                  "image": null
+                },
+                "upgrade shell": {
+                  "type": "file",
+                  "name": "upgrade shell",
+                  "path": "/writeups/ctf notes/network/Priv esc/upgrade shell.html",
+                  "title": "upgrade shell",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "with python bash python -c 'import pty; pty",
+                  "image": null
+                },
+                "windows": {
+                  "type": "file",
+                  "name": "windows",
+                  "path": "/writeups/ctf notes/network/Priv esc/windows.html",
+                  "title": "windows",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "System Info  systeminfo whoami /groups whoami /priv  Vulnerable: SeImpersonatePrivilege → JuicyPotato, PrintSpoofer",
+                  "image": null
+                }
+              },
+              "postCount": 3
+            },
+            "enum&scanning": {
+              "type": "directory",
+              "name": "enum&scanning",
+              "path": "ctf notes/network/enum&scanning",
+              "children": {
+                "IMAP": {
+                  "type": "file",
+                  "name": "IMAP",
+                  "path": "/writeups/ctf notes/network/enum&scanning/IMAP.html",
+                  "title": "IMAP",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "bash telnet $target 143   bash a1 LOGIN <user> <pass> a2 LIST \"\" \"\" a3 SELECT INBOX a4 FETCH 1 BODY[] a5 LOGOUT",
+                  "image": null
+                },
+                "SMTP": {
+                  "type": "file",
+                  "name": "SMTP",
+                  "path": "/writeups/ctf notes/network/enum&scanning/SMTP.html",
+                  "title": "SMTP",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "bash telnet $target 25   bash HELO test",
+                  "image": null
+                },
+                "ftp": {
+                  "type": "file",
+                  "name": "ftp",
+                  "path": "/writeups/ctf notes/network/enum&scanning/ftp.html",
+                  "title": "ftp",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "bash ftp $target  or bash nc $target 21   If anonymous login is allowed: bash Name: anonymous Password: anonymous   Recursive listing (sometimes hidde...",
+                  "image": null
+                },
+                "nmap": {
+                  "type": "file",
+                  "name": "nmap",
+                  "path": "/writeups/ctf notes/network/enum&scanning/nmap.html",
+                  "title": "nmap",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "fast port scanning  bash nmap -p- -sC -sV -vv --min-rate 7000 -T4 -Pn -o nmap",
+                  "image": null
+                },
+                "pop3": {
+                  "type": "file",
+                  "name": "pop3",
+                  "path": "/writeups/ctf notes/network/enum&scanning/pop3.html",
+                  "title": "pop3",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "bash telnet <ip> 110   bash USER <user> PASS <pass> LIST           list emails RETR 1         read email 1 DELE 1         delete email 1 QUIT",
+                  "image": null
+                },
+                "rdp": {
+                  "type": "file",
+                  "name": "rdp",
+                  "path": "/writeups/ctf notes/network/enum&scanning/rdp.html",
+                  "title": "rdp",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "bruteforce bash hydra -t 4 -V -f -L users",
+                  "image": null
+                },
+                "smb": {
+                  "type": "file",
+                  "name": "smb",
+                  "path": "/writeups/ctf notes/network/enum&scanning/smb.html",
+                  "title": "smb",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "list share: bash smbclient -L //$target -N  or bash enum4linux -a $target   Connect to a Share bash smbclient //$target/<share>   With username:  smbc...",
+                  "image": null
+                },
+                "ssh": {
+                  "type": "file",
+                  "name": "ssh",
+                  "path": "/writeups/ctf notes/network/enum&scanning/ssh.html",
+                  "title": "ssh",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "Try weak/default passwords: bash hydra -l root -P rockyou",
+                  "image": null
+                },
+                "winrm": {
+                  "type": "file",
+                  "name": "winrm",
+                  "path": "/writeups/ctf notes/network/enum&scanning/winrm.html",
+                  "title": "winrm",
+                  "date": "2026-02-23",
+                  "tags": [],
+                  "series": null,
+                  "excerpt": "Bruteforce bash hydra -L users",
+                  "image": null
+                }
+              },
+              "postCount": 9
+            }
+          },
+          "postCount": 12
+        }
+      },
+      "postCount": 15
+    }
+  },
+  "tags": {
+    "malware": [
+      {
+        "title": "AES tiny",
+        "path": "/writeups/Malware DEV/Encryption/AES tiny.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "Encryption",
+        "path": "/writeups/Malware DEV/Encryption/Encryption.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "RC4 Native API",
+        "path": "/writeups/Malware DEV/Encryption/RC4 Native API.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "XOR 1 Key",
+        "path": "/writeups/Malware DEV/Encryption/XOR 1 Key.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "XOR KEYS",
+        "path": "/writeups/Malware DEV/Encryption/XOR KEYS.html",
+        "date": "2026-02-23"
+      }
+    ],
+    "encryption": [
+      {
+        "title": "AES tiny",
+        "path": "/writeups/Malware DEV/Encryption/AES tiny.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "Encryption",
+        "path": "/writeups/Malware DEV/Encryption/Encryption.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "RC4 Native API",
+        "path": "/writeups/Malware DEV/Encryption/RC4 Native API.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "XOR 1 Key",
+        "path": "/writeups/Malware DEV/Encryption/XOR 1 Key.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "XOR KEYS",
+        "path": "/writeups/Malware DEV/Encryption/XOR KEYS.html",
+        "date": "2026-02-23"
+      }
+    ],
+    "aes": [
+      {
+        "title": "AES tiny",
+        "path": "/writeups/Malware DEV/Encryption/AES tiny.html",
+        "date": "2026-02-23"
+      }
+    ],
+    "windows": [
+      {
+        "title": "AES tiny",
+        "path": "/writeups/Malware DEV/Encryption/AES tiny.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "Encryption",
+        "path": "/writeups/Malware DEV/Encryption/Encryption.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "RC4 Native API",
+        "path": "/writeups/Malware DEV/Encryption/RC4 Native API.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "XOR 1 Key",
+        "path": "/writeups/Malware DEV/Encryption/XOR 1 Key.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "XOR KEYS",
+        "path": "/writeups/Malware DEV/Encryption/XOR KEYS.html",
+        "date": "2026-02-23"
+      }
+    ],
+    "rc4": [
+      {
+        "title": "RC4 Native API",
+        "path": "/writeups/Malware DEV/Encryption/RC4 Native API.html",
+        "date": "2026-02-23"
+      }
+    ],
+    "windows-api": [
+      {
+        "title": "RC4 Native API",
+        "path": "/writeups/Malware DEV/Encryption/RC4 Native API.html",
+        "date": "2026-02-23"
+      }
+    ],
+    "xor": [
+      {
+        "title": "XOR 1 Key",
+        "path": "/writeups/Malware DEV/Encryption/XOR 1 Key.html",
+        "date": "2026-02-23"
+      },
+      {
+        "title": "XOR KEYS",
+        "path": "/writeups/Malware DEV/Encryption/XOR KEYS.html",
+        "date": "2026-02-23"
+      }
+    ],
+    "keys": [
+      {
+        "title": "XOR KEYS",
+        "path": "/writeups/Malware DEV/Encryption/XOR KEYS.html",
+        "date": "2026-02-23"
+      }
+    ],
+    "include": [
+      {
+        "title": "XOR KEYS",
+        "path": "/writeups/Malware DEV/Encryption/XOR KEYS.html",
+        "date": "2026-02-23"
+      }
+    ]
+  },
+  "totalPosts": 52,
+  "recentPosts": [
+    {
+      "title": "AD Basics",
+      "path": "/writeups/Active Directory/AD Basics.html",
+      "tags": [],
+      "category": "Active Directory",
+      "date": "2026-02-23",
+      "series": null,
+      "excerpt": ">Title: Notes for Active Directory Basics >Author: Andrew mamdouh - --  What's the AD",
+      "image": null
+    },
+    {
+      "title": "Enumerating Active Directory",
+      "path": "/writeups/Active Directory/Enumerating Active Directory.html",
+      "tags": [],
+      "category": "Active Directory",
+      "date": "2026-02-23",
+      "series": null,
+      "excerpt": ">Title: Notes for Enumerating Active Directory >Author: Andrew Mamdouh  ",
+      "image": null
+    },
+    {
+      "title": "Lateral Movement and Pivoting",
+      "path": "/writeups/Active Directory/Lateral Movement and Pivoting.html",
+      "tags": [],
+      "category": "Active Directory",
+      "date": "2026-02-23",
+      "series": null,
+      "excerpt": ">Title: Notes for Active Directory Basics >Author: Andrew mamdouh   What is Lateral Movement",
+      "image": null
+    },
+    {
+      "title": "DLL",
+      "path": "/writeups/Malware DEV/DLL/DLL.html",
+      "tags": [],
+      "category": "Malware DEV / DLL",
+      "date": "2026-02-23",
+      "series": null,
+      "excerpt": "A DLL (Dynamic Link Library) is a file that contains code, data, and resources that can be used by multiple programs at the same time",
+      "image": null
+    },
+    {
+      "title": "Manual DLL Call",
+      "path": "/writeups/Malware DEV/DLL/Manual DLL Call.html",
+      "tags": [],
+      "category": "Malware DEV / DLL",
+      "date": "2026-02-23",
+      "series": null,
+      "excerpt": "Manual DLL Function call in Windows   Overview  In Windows programming, you often link DLLs at compile-time",
+      "image": null
+    },
+    {
+      "title": "AES tiny",
+      "path": "/writeups/Malware DEV/Encryption/AES tiny.html",
+      "tags": [
+        "malware",
+        "encryption",
+        "aes",
+        "windows"
+      ],
+      "category": "Malware DEV / Encryption",
+      "date": "2026-02-23",
+      "series": null,
+      "excerpt": "Using Tiny AES for Shellcode Encryption and Decryption in Visual Studio  - Tiny AES is a minimal and portable AES implementation in C",
+      "image": null
+    },
+    {
+      "title": "Encryption",
+      "path": "/writeups/Malware DEV/Encryption/Encryption.html",
+      "tags": [
+        "malware",
+        "encryption",
+        "windows"
+      ],
+      "category": "Malware DEV / Encryption",
+      "date": "2026-02-23",
+      "series": null,
+      "excerpt": "[AES tiny](/writeups/Malware%20DEV/Encryption/AES%20tiny",
+      "image": null
+    },
+    {
+      "title": "RC4 Native API",
+      "path": "/writeups/Malware DEV/Encryption/RC4 Native API.html",
+      "tags": [
+        "malware",
+        "encryption",
+        "rc4",
+        "windows",
+        "windows-api"
+      ],
+      "category": "Malware DEV / Encryption",
+      "date": "2026-02-23",
+      "series": null,
+      "excerpt": "RC4 Stream Cipher (Windows Native API Style)  - RC4 is a symmetric stream cipher used for encrypting byte streams",
+      "image": null
+    },
+    {
+      "title": "XOR 1 Key",
+      "path": "/writeups/Malware DEV/Encryption/XOR 1 Key.html",
+      "tags": [
+        "malware",
+        "encryption",
+        "xor",
+        "windows"
+      ],
+      "category": "Malware DEV / Encryption",
+      "date": "2026-02-23",
+      "series": null,
+      "excerpt": "- XOR (Exclusive OR) is a bitwise operation used in encryption/decryption",
+      "image": null
+    },
+    {
+      "title": "XOR KEYS",
+      "path": "/writeups/Malware DEV/Encryption/XOR KEYS.html",
+      "tags": [
+        "malware",
+        "encryption",
+        "xor",
+        "keys",
+        "windows",
+        "include"
+      ],
+      "category": "Malware DEV / Encryption",
+      "date": "2026-02-23",
+      "series": null,
+      "excerpt": "XOR with Multiple Keys  - Multi-key XOR uses a sequence of key bytes instead of a single key",
+      "image": null
+    }
+  ]
+}
